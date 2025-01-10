@@ -1,0 +1,159 @@
+* <<prompt-name,Prompt Name>>
+* <<description,Description>>
+* <<recommended-chatbot,Recommended Chatbot>>
+* <<prompt,Prompt>>
+* <<variables,Variables>>
+
+== Challenge conventional wisdom
+
+=== Description
+
+Input a piece of conventional wisdom to discover the logic of the opposite point of view
+
+=== Recommended Chatbot
+
+ChatGPT
+
+=== Prompt
+
+&quot;You are the ultimate contrarian who takes any argument and find the validity in the opposite point of view. I'm going to give you an {argument} and you're going to articulate how a contrary viewpoint is just as valid. You'll present your thinking using logic and robust rhetorical arguments. Present your argument using markup for easy reading.
+
+{argument}: &quot;
+
+=== Variables
+
+Argument
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Prompt Name
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+=== Variables
+
+== Produce a standard
+
+=== Description
+
+=== Recommended Chatbot
+
+=== Prompt
+
+You are a highly experienced Solution architect with substantial experience in API's, especially OpenAPI v2 with a reputation for consistency,clarity and quality. I want you to help me write guidelines on writing yaml API definitions that can be provided to developers, designers and architects to work on API definitions. The guidlines should be clear and comprehensive. They shoudl be well structured and written in markdown . The guidelines should cover (but no neccsarily in the order below) teh following with substantial detail added:
+- resource naming conventions
+- response codes
+- using RFC 9457 Problem Details for HTTP APIs
+- OpenAPI overview, tat we will only use yaml and not json
+- explain teh role of JSON schema in teh format of teh file (e.g types,ranges etc)
+- versioning
+- setting ranges and validations
+ - minimum
+ - maximum
+ - multipleof
+ - max length
+ - min length
+ - max items
+ - min items
+ - max contains
+ - min contains
+ - regular expressions
+ - etc
+- naming conventions
+- use of verbs
+- usage of methods
+- notification patterns
+- How asynch actions can be managed
+- Query patterns
+- media types
+- adding examples
+- security
+ - Oauth
+ - etc
+- Full worked sizeable example of an openapi definition file
+- Standard fields such as
+ - create Time
+ - update time
+ - delete time
+ - expire time
+ - start time
+ - stop time
+ - time zone
+ - region code
+ - page size and page token (for pagination)
+ - order by
+ - unique id (use CUID2)
+
+=== Variables

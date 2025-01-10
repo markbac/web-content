@@ -1,0 +1,2665 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference">
+      
+      
+        <meta name="author" content="Mark Bacon">
+      
+      
+        <link rel="canonical" href="https://example.com/Architecture/UnderstandingTheC4Model/">
+      
+      
+        <link rel="prev" href="../SolutionDesign/">
+      
+      
+        <link rel="next" href="../architecture_decision_framework/">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Understanding the C4 Model for Software Architecture Documentation - Reference</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-the-c4-model-for-software-architecture-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Reference" class="md-header__button md-logo" aria-label="Reference" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Reference
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understanding the C4 Model for Software Architecture Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Reference" class="md-nav__button md-logo" aria-label="Reference" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Reference
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DurabilityInCoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DurabilityInCoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HttpStatusCodes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reflecting on Error Management and listing HTTP Status Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SFIA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SFIA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SolutionDesign/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SolutionDesign
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Understanding the C4 Model for Software Architecture Documentation
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_decision_framework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture decision framework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling_the_practice_of_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling the Practice of Architecture, Conversationally
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tempLinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C4 Model
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            C4 Model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4%20Model/c4%20model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    c4 model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Explanation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            Explanation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/12_software_architecture_styles-software_engineers_should_know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Software Architecture Styles Software Engineers Should Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/best-practices-when-documenting-your-code-for-software-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices When Documenting Your Code for Software Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    explanation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/what_is_solution_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Solution Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HLD
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            HLD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HLD/hld/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HLD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HowTo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            HowTo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HowTo/api-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create docs from an Open API Spec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HowTo/howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    howto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/10-architecture-patterns-to-know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Design Patterns every Software Architect and Software Engineer must know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/12_software_architecture_styles-software_engineers_should_know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Software Architecture Styles Software Engineers Should Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/23-fundamental-principles-in-sw-arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23 Fundamental Principles in Software Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/7-architecture-design-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Architecture Design Patterns — You wish you knew before interview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/Git-branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Branching Methodologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/The-important-architecturla-patterns-you-need-to-know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Architecture: The Most Important Architectural Patterns You Need to Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/best-practices-when-documenting-your-code-for-software-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices When Documenting Your Code for Software Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/codeImplementation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code - General Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/git_branching_strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing the Right Git Branching Strategy: A Comparative Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/habits_of_great_software_engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Habits of great software engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/microservices-checklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microservices Checklist — Cover All Aspects of Microservices Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/naming-conventions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Naming Convention
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/pragmatic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Pragmatic Programmer Quick Reference Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/throughput_and_latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Throughput &amp; Latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/uid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Wild World of Unique Identifiers (UUID, ULID, etc)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/uid_comparison/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Globally Unique Identifier a fair comparison
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what-is-MACH/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A Comprehensive Guide to MACH Architecture in 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what-is-the-C4-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture Method : C4 Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what_is_solution_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Solution Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14_21" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14_21" id="__nav_2_14_21_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Media
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_14_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14_21">
+            <span class="md-nav__icon md-icon"></span>
+            Media
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/media/media/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    media
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tutorials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_16" id="__nav_2_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Adr
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_16">
+            <span class="md-nav__icon md-icon"></span>
+            Adr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/adr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/decision_record_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision record template by Michael Nygard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_17" id="__nav_2_17_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architectural principles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_17">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/SOLID/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SOLID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/architectural_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    architectural_principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/design-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/john_lewis_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    John Lewis Software Engineering Principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_18" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_18" id="__nav_2_18_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rfcs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_18">
+            <span class="md-nav__icon md-icon"></span>
+            Rfcs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rfcs/rfc-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RFC Template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rfcs/rfcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rfcs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19" id="__nav_2_19_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structurizr
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19">
+            <span class="md-nav__icon md-icon"></span>
+            Structurizr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/structurizr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    structurizr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_2" id="__nav_2_19_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Adrs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_19_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_2">
+            <span class="md-nav__icon md-icon"></span>
+            Adrs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/adrs/0001-record-architecture-decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/adrs/adrs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adrs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_3" id="__nav_2_19_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_19_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_3">
+            <span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/0001-design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_3_3" id="__nav_2_19_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Images
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_19_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/images/images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    images
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/AI/aiPrompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aiPrompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MyBooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            MyBooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Biographies_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Biographies books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Football_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Football books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/IT_related_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IT related books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Science_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Science books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/updated_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Updated books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scrum
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Scrum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/acceptance_criteria_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acceptance criteria template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/sprint_goal_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint goal template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/user_story_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User story template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="understanding-the-c4-model-for-software-architecture-documentation"><strong>Understanding the C4 Model for Software Architecture Documentation</strong><a class="headerlink" href="#understanding-the-c4-model-for-software-architecture-documentation" title="Permanent link">&para;</a></h1>
+<p><img alt="" src="../media/20240119133533.png" /></p>
+<p>When it comes to documenting software systems, using a structured and effective approach is crucial. One such approach is the C4 model, which provides a clear and hierarchical way of representing different levels of detail in software system diagrams. The C4 model can be used to document software systems effectively. Whether you are a beginner or an experienced developer, understanding the C4 model will help you create comprehensive and meaningful system diagrams.</p>
+<h1 id="what-is-the-c4-model"><strong>What is the C4 Model?</strong><a class="headerlink" href="#what-is-the-c4-model" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://c4model.com/">C4 model</a>, created by Simon Brown, is a hierarchical approach to visualizing the architecture of a software system. It consists of four levels of diagrams, with each level providing increasing detail and granularity.</p>
+<h2 id="the-four-levels-are">The four levels are:<a class="headerlink" href="#the-four-levels-are" title="Permanent link">&para;</a></h2>
+<p><strong>Level 1: System Context diagram:</strong> The <a href="https://c4model.com/#SystemContextDiagram">system context diagram</a> is the highest-level diagram that provides an overview of the entire system and its interactions with external entities. It focuses on actors (customers with specific roles) and systems, showcasing the relationships between them.
+<img alt="" src="../media/20240119133624.png" />
+<img alt="" src="../media/20240119134157.png" /></p>
+<p><strong>Level 2: Container diagram:</strong> The <a href="https://c4model.com/#ContainerDiagram">container diagram</a> zooms in from the system context and focuses on the major containers that host code or store data within the system. It provides a more detailed view of the system’s architecture, including the different types of containers and their interactions.
+<img alt="" src="../media/20240119133636.png" />
+<img alt="" src="../media/20240119134212.png" /></p>
+<p><strong>Level 3: Component diagram:</strong> The <a href="https://c4model.com/#ComponentDiagram">component diagram</a> further zooms in and shows the major structural building blocks of the application and their interactions. It represents the key components of the system and how they fit together to provide functionality.
+<img alt="" src="../media/20240119133654.png" />
+<img alt="" src="../media/20240119134223.png" /></p>
+<p><strong>Level 4: Code diagram:</strong> The <a href="https://c4model.com/#CodeDiagram">code diagram</a> is the deepest level of zoom and provides a 1–1 mapping with the actual code of the system. While this diagram exists, it is often not used as the code itself serves as a visual representation, and there are better tools out there for this purpose.
+<img alt="" src="../media/20240119133709.png" /></p>
+<p>In addition to these four levels, there are a few supplementary diagrams that are worth mentioning:</p>
+<ul>
+<li>
+<p><strong>System Landscape diagram:</strong> The <a href="https://c4model.com/#SystemLandscapeDiagram">system landscape diagram</a> provides a view of all the software systems within an enterprise. It helps in understanding the overall context and relationships between different systems. From a pragmatic viewpoint, a system landscape diagram essentially serves as a system context diagram, but without emphasizing a specific software system.
+ <img alt="" src="../media/20240119133739.png" />
+<img alt="" src="../media/20240119134109.png" /></p>
+</li>
+<li>
+<p><strong>Deployment diagram:</strong> The <a href="https://docs.structurizr.com/dsl/cookbook/deployment-view/">deployment diagram</a> focuses on the infrastructure aspects of the system, including networking, CDNs, gateways, load balancers, and resource groups. It helps in understanding how the system is deployed and the dependencies on external services.
+<img alt="" src="../media/20240119133940.png" />
+<img alt="" src="../media/20240119133956.png" />
+<img alt="" src="../media/20240119134009.png" /></p>
+</li>
+<li>
+<p><strong>Dynamic diagram:</strong> The <a href="https://docs.structurizr.com/dsl/cookbook/dynamic-view/">dynamic diagram</a> is a cut-down version of any of the previous diagrams and is used to show specific features or use cases. It can be thought of as similar to a sequence diagram, showcasing the interactions between components or containers.
+ <img alt="" src="../media/20240119133823.png" />
+<img alt="" src="../media/20240119134129.png" /></p>
+</li>
+</ul>
+<h1 id="modeling-vs-diagramming">Modeling vs Diagramming<a class="headerlink" href="#modeling-vs-diagramming" title="Permanent link">&para;</a></h1>
+<p>Before we dive deeper into the C4 model, it’s important to understand the difference between modeling and diagramming. Modeling is the act of describing the system, including its actors, systems, containers, components, and their relationships. It focuses on capturing the structure and behavior of the system. On the other hand, diagramming is the process of visually representing the model. It involves creating diagrams that depict the different elements of the model in a clear and understandable way.</p>
+<p>The distinction between modeling and diagramming becomes powerful when we can create a single model and reuse different elements of it in multiple diagrams. This allows us to apply the DRY (Don’t Repeat Yourself) principle to our diagrams, making them more maintainable and reducing duplication of effort.</p>
+<h1 id="introducing-structurizr">Introducing Structurizr<a class="headerlink" href="#introducing-structurizr" title="Permanent link">&para;</a></h1>
+<p>Now that we have a good understanding of the C4 model and its different levels, let’s explore a tool that can help us create these diagrams effectively. Structurizr is an excellent tool that enables us to model a system using a custom DSL (Domain-Specific Language) and then generate multiple diagrams from that model. It provides a seamless way to create, visualize, and document software architectures.</p>
+<h1 id="setting-up-structurizr">Setting up Structurizr<a class="headerlink" href="#setting-up-structurizr" title="Permanent link">&para;</a></h1>
+<p>To get started with <a href="https://structurizr.com/">Structurizr</a>, we need to set up the tool. There are different versions available, but for our purposes, Structurizr Lite works fantastic. It can be installed locally via Docker. Let’s walk through the Docker installation process:</p>
+<ul>
+<li>Pull the Structurizr Lite image from Docker Hub:</li>
+</ul>
+<p>docker pull structurizr/lite</p>
+<ul>
+<li>Run the container, exposing a port on the host and providing a path to our working directory:</li>
+</ul>
+<p>docker run -it — rm -p 8080:8080 — name structurizr-lite -v C:/PATH_LOCAL_DRIVE:/usr/local/structurizr structurizr/lite</p>
+<p>It’s important to note that one Docker image can only point to one working directory. If you have multiple workspaces in different directories, you’ll need to have one container running for each of them, and you’ll want to run on different ports, so you’ll adjust the -p 8081:8081 or whatever port you wish to use. You can manage these containers easily using <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a>.</p>
+<h1 id="creating-models-and-diagrams-with-structurizr">Creating Models and Diagrams with Structurizr<a class="headerlink" href="#creating-models-and-diagrams-with-structurizr" title="Permanent link">&para;</a></h1>
+<p>Once we have Structurizr up and running, we can start creating our models and diagrams. Let’s take an example of an e-commerce system and build a model for it. Here’s how the model might look:</p>
+<div class="highlight"><pre><span></span><code>workspace {  
+ model {  
+   enterprise {  
+  customerPerson = person &quot;Customer&quot;  
+  warehousePerson = person &quot;Warehouse Staff&quot;  
+
+  ecommerceSystem = softwareSystem &quot;Example E-Commerce Store&quot; {  
+    storeContainer = container &quot;Web App SPA&quot; &quot;E-Commerce Store&quot; &quot;Angular&quot; &quot;Browser,Microsoft Azure - Static Apps,Azure&quot;  
+    stockContainer = container &quot;Stock Management Portal SPA&quot; &quot;Order fulfillment, stock management, order dispatch&quot; &quot;Angular&quot; &quot;Browser,Microsoft Azure - Static Apps,Azure&quot;  
+    dbContainer = container &quot;Database&quot; &quot;Customers, Orders, Payments&quot; &quot;SQL Server&quot; &quot;Database,Microsoft Azure - Azure SQL,Azure&quot;  
+    apiContainer = container &quot;API&quot; &quot;Backend&quot; &quot;ASP.NET Core&quot; &quot;Microsoft Azure - App Services,Azure&quot; {  
+   group &quot;Web Layer&quot; {  
+     policyComp = component &quot;Authorization Policy&quot; &quot;Authentication and authorization&quot; &quot;ASP.NET Core&quot;  
+     controllerComp = component &quot;API Controller&quot; &quot;Requests, responses, routing and serialization&quot; &quot;ASP.NET Core&quot;  
+     mediatrComp = component &quot;MediatR&quot; &quot;Provides decoupling of requests and handlers&quot; &quot;MediatR&quot;  
+   }  
+   group &quot;Application Layer&quot; {  
+     commandHandlerComp = component &quot;Command Handler&quot; &quot;Business logic for changing state and triggering events&quot; &quot;MediatR request handler&quot;  
+     queryHandlerComp = component &quot;Query Handler&quot; &quot;Business logic for retrieving data&quot; &quot;MediatR request handler&quot;  
+     commandValidatorComp = component &quot;Command Validator&quot; &quot;Business validation prior to changing state&quot; &quot;Fluent Validation&quot;  
+   }  
+   group &quot;Infrastructure Layer&quot; {  
+     dbContextComp = component &quot;DB Context&quot; &quot;ORM - Maps LINQ queries to the data store&quot; &quot;Entity Framework Core&quot;  
+   }  
+   group &quot;Domain Layer&quot; {  
+     domainModelComp = component &quot;Model&quot; &quot;Domain models&quot; &quot;DTO/POCO classes&quot;  
+   }  
+    }  
+  }  
+
+  emailSystem = softwareSystem &quot;Email System&quot; &quot;Sendgrid&quot; &quot;External&quot;  
+
+  customerPerson -&gt; storeContainer &quot;Places Orders&quot; &quot;https&quot;  
+  warehousePerson -&gt; stockContainer &quot;Dispatches Orders&quot; &quot;https&quot;  
+  apiContainer -&gt; emailSystem &quot;Trigger emails&quot; &quot;https&quot;  
+  emailSystem -&gt; customerPerson &quot;Delivers emails&quot; &quot;https&quot;  
+
+  stockContainer -&gt; apiContainer &quot;uses&quot; &quot;https&quot;  
+  storeContainer -&gt; apiContainer &quot;uses&quot; &quot;https&quot;  
+  apiContainer -&gt; dbContainer &quot;persists data&quot; &quot;https&quot;  
+
+  dbContextComp -&gt; dbContainer &quot;stores and retrieves data&quot;  
+  storeContainer -&gt; controllerComp &quot;calls&quot;  
+  stockContainer -&gt; controllerComp &quot;calls&quot;  
+  controllerComp -&gt; policyComp &quot;authenticated and authorized by&quot;  
+  controllerComp -&gt; mediatrComp &quot;sends queries &amp; commands to&quot;  
+  mediatrComp -&gt; queryHandlerComp &quot;sends query to&quot;  
+  mediatrComp -&gt; commandValidatorComp &quot;sends command to&quot;  
+  commandValidatorComp -&gt; commandHandlerComp &quot;passes command to&quot;  
+  queryHandlerComp -&gt; dbContextComp &quot;Gets data from&quot;  
+  commandHandlerComp -&gt; dbContextComp &quot;Update data in&quot;  
+  dbContextComp -&gt; domainModelComp &quot;contains collections of&quot;  
+   }  
+ }  
+
+     views {  
+
+        systemlandscape &quot;SystemLandscape&quot; {  
+                include ecommerceSystem emailSystem  
+                autoLayout  
+            }  
+
+        systemContext ecommerceSystem &quot;Context&quot; {  
+            include \* emailSystem  
+            autoLayout  
+        }  
+
+        container ecommerceSystem &quot;Container&quot; {  
+            include \*  
+            autoLayout  
+        }  
+
+        component apiContainer &quot;Component&quot; {  
+            include \* customerPerson warehousePerson  
+            autoLayout  
+        }  
+
+        themes default &quot;https://static.structurizr.com/themes/microsoft-azure-2021.01.26/theme.json&quot;  
+
+        styles {  
+            element &quot;Azure&quot; {  
+                color #ffffff  
+            }  
+            element &quot;External&quot; {  
+                background #783aba  
+                color #ffffff  
+            }  
+            element &quot;Database&quot; {  
+                shape Cylinder  
+            }  
+            element &quot;Browser&quot; {  
+                shape WebBrowser  
+            }  
+        }  
+    }  
+}
+</code></pre></div>
+<p><em>For the full dsl on my GitHub,</em> <a href="https://github.com/Shelman2/c4modeling/blob/main/workspace.dsl"><em>click here</em></a></p>
+<p>The DSL used to create the model may seem a bit complex at first, but it follows a straightforward syntax. Each element in the model is defined using a specific DSL command, such as person, softwareSystem, container, or component. Relationships between elements are defined using the -&gt; operator, along with a description and transport information.</p>
+<p>Once we have our model defined, we can generate different diagrams from it using Structurizr. Let’s take a look at how we can generate the context, container, and component diagrams.</p>
+<h1 id="generating-context-diagrams">Generating Context Diagrams<a class="headerlink" href="#generating-context-diagrams" title="Permanent link">&para;</a></h1>
+<p>To generate a context diagram, we can use the following view definition:</p>
+<div class="highlight"><pre><span></span><code>systemContext ecommerceSystem &quot;Context&quot; {  
+  include \*  
+  emailSystem  
+  autoLayout  
+}  
+</code></pre></div>
+<p>This view definition includes all elements from the model and adds the emailSystem as an external system. The autoLayout command ensures that the diagram is automatically laid out for better readability. Running this view definition will generate a context diagram for our e-commerce system, showcasing the relationships between actors, systems, and the external email system.</p>
+<h1 id="generating-container-diagrams">Generating Container Diagrams<a class="headerlink" href="#generating-container-diagrams" title="Permanent link">&para;</a></h1>
+<p>To generate a container diagram, we can use the following view definition:</p>
+<div class="highlight"><pre><span></span><code>container ecommerceSystem &quot;Container&quot; {  
+  include \*  
+}
+</code></pre></div>
+<p>This view definition includes all elements from the model, generating a container diagram that showcases the major containers within the system and their interactions. Running this view definition will give us a container diagram that provides a more detailed view of the system’s architecture.</p>
+<h1 id="generating-component-diagrams">Generating Component Diagrams<a class="headerlink" href="#generating-component-diagrams" title="Permanent link">&para;</a></h1>
+<p>To generate a component diagram, we can use the following view definition:</p>
+<div class="highlight"><pre><span></span><code>component apiContainer &quot;Component&quot; {  
+  include \*  
+  customerPerson  
+  warehousePerson  
+  autoLayout  
+}
+</code></pre></div>
+<p>This view definition includes all elements from the model, along with the <code>customerPerson</code> and <code>warehousePerson</code> actors. The <code>autoLayout</code> command ensures that the diagram is automatically laid out for better readability. Running this view definition will generate a component diagram that showcases the major components within the system and how they interact with the actors.</p>
+<h1 id="additional-features-of-structurizr">Additional Features of Structurizr<a class="headerlink" href="#additional-features-of-structurizr" title="Permanent link">&para;</a></h1>
+<p>In addition to generating diagrams from models, Structurizr provides additional features to help with documenting architectures. It allows for adding documentation and <a href="https://dev.to/simonbrown/visualising-adrs-3klm">Architectural Decision Records</a> (ADRs) to the model, making it a comprehensive tool for software architecture documentation.</p>
+<h1 id="wrapping-it-up">Wrapping it up<a class="headerlink" href="#wrapping-it-up" title="Permanent link">&para;</a></h1>
+<p>We explored the C4 model and how it can be used to document software systems with relative ease. We have learned about the four levels of the C4 model, from the system context diagram to the code diagram, and how each level provides increasing detail and granularity. We have also seen the difference between modeling and diagramming, and how Structurizr can be used as a powerful tool to create, visualize, and document software architectures.</p>
+<p>Using the C4 model and Structurizr, you can create comprehensive and meaningful system diagrams that accurately represent the architecture of your software systems. Whether you are a beginner or an experienced developer, understanding and utilizing the C4 model will help you communicate and document your software architectures effectively. So, get started with the C4 model and Structurizr, and take your software documentation to the next level!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../overrides/extra.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2605 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference">
+      
+      
+        <meta name="author" content="Mark Bacon">
+      
+      
+        <link rel="canonical" href="https://example.com/Architecture/HttpStatusCodes/">
+      
+      
+        <link rel="prev" href="../DurabilityInCoding/">
+      
+      
+        <link rel="next" href="../SFIA/">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Reflecting on Error Management and listing HTTP Status Codes - Reference</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reflecting-on-error-management-and-listing-http-status-codes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Reference" class="md-header__button md-logo" aria-label="Reference" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Reference
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reflecting on Error Management and listing HTTP Status Codes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Reference" class="md-nav__button md-logo" aria-label="Reference" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Reference
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DurabilityInCoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DurabilityInCoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reflecting on Error Management and listing HTTP Status Codes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reflecting on Error Management and listing HTTP Status Codes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#error-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Management
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SFIA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SFIA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SolutionDesign/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SolutionDesign
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UnderstandingTheC4Model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding the C4 Model for Software Architecture Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_decision_framework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture decision framework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling_the_practice_of_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling the Practice of Architecture, Conversationally
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tempLinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C4 Model
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            C4 Model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4%20Model/c4%20model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    c4 model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Explanation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            Explanation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/12_software_architecture_styles-software_engineers_should_know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Software Architecture Styles Software Engineers Should Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/best-practices-when-documenting-your-code-for-software-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices When Documenting Your Code for Software Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    explanation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/what_is_solution_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Solution Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HLD
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            HLD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HLD/hld/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HLD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HowTo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            HowTo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HowTo/api-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create docs from an Open API Spec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HowTo/howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    howto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/10-architecture-patterns-to-know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Design Patterns every Software Architect and Software Engineer must know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/12_software_architecture_styles-software_engineers_should_know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Software Architecture Styles Software Engineers Should Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/23-fundamental-principles-in-sw-arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23 Fundamental Principles in Software Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/7-architecture-design-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Architecture Design Patterns — You wish you knew before interview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/Git-branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Branching Methodologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/The-important-architecturla-patterns-you-need-to-know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Architecture: The Most Important Architectural Patterns You Need to Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/best-practices-when-documenting-your-code-for-software-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices When Documenting Your Code for Software Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/codeImplementation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code - General Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/git_branching_strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing the Right Git Branching Strategy: A Comparative Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/habits_of_great_software_engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Habits of great software engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/microservices-checklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microservices Checklist — Cover All Aspects of Microservices Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/naming-conventions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Naming Convention
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/pragmatic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Pragmatic Programmer Quick Reference Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/throughput_and_latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Throughput &amp; Latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/uid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Wild World of Unique Identifiers (UUID, ULID, etc)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/uid_comparison/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Globally Unique Identifier a fair comparison
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what-is-MACH/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A Comprehensive Guide to MACH Architecture in 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what-is-the-C4-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture Method : C4 Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what_is_solution_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Solution Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14_21" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14_21" id="__nav_2_14_21_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Media
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_14_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14_21">
+            <span class="md-nav__icon md-icon"></span>
+            Media
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/media/media/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    media
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tutorials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_16" id="__nav_2_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Adr
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_16">
+            <span class="md-nav__icon md-icon"></span>
+            Adr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/adr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/decision_record_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision record template by Michael Nygard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_17" id="__nav_2_17_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architectural principles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_17">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/SOLID/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SOLID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/architectural_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    architectural_principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/design-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/john_lewis_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    John Lewis Software Engineering Principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_18" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_18" id="__nav_2_18_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rfcs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_18">
+            <span class="md-nav__icon md-icon"></span>
+            Rfcs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rfcs/rfc-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RFC Template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rfcs/rfcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rfcs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19" id="__nav_2_19_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structurizr
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19">
+            <span class="md-nav__icon md-icon"></span>
+            Structurizr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/structurizr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    structurizr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_2" id="__nav_2_19_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Adrs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_19_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_2">
+            <span class="md-nav__icon md-icon"></span>
+            Adrs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/adrs/0001-record-architecture-decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/adrs/adrs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adrs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_3" id="__nav_2_19_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_19_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_3">
+            <span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/0001-design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_3_3" id="__nav_2_19_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Images
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_19_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/images/images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    images
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/AI/aiPrompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aiPrompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MyBooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            MyBooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Biographies_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Biographies books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Football_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Football books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/IT_related_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IT related books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Science_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Science books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/updated_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Updated books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scrum
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Scrum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/acceptance_criteria_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acceptance criteria template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/sprint_goal_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint goal template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/user_story_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User story template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#error-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Management
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="reflecting-on-error-management-and-listing-http-status-codes">Reflecting on Error Management and listing HTTP Status Codes<a class="headerlink" href="#reflecting-on-error-management-and-listing-http-status-codes" title="Permanent link">&para;</a></h1>
+<p>Under normal operational conditions, interactions between two or more system will result in the exchange numerous codes which notify each system of task status e.g. a 200 return code will represents that <em>all is well</em> and allows the process continuation of further orchestration of a workflow to complete its task. These codes are also useful for process initiators to manage errors and respond to any errors that occur.</p>
+<h2 id="error-management">Error Management<a class="headerlink" href="#error-management" title="Permanent link">&para;</a></h2>
+<p>Error Management may refer to the <em>identification</em>, <em>capture</em>, <em>analysis, notification</em> and <em>resolution</em> of problematic issues or a fault which may occur during the operation of a system or the exchange of data/messages between one or more systems.</p>
+<blockquote>
+<p>It is important to note that <strong>Error Management is NOT Incident Management,</strong> which is a whole different topic, one for another blog.</p>
+</blockquote>
+<p>Errors i.e. systems issues or faults can be classified as <strong>critical</strong> i.e. when a resolution cannot be applied at run-time to resolve e.g. a hardware failure, or <strong>non-critical</strong> errors which can be ‘<em>gracefully’</em> resolved or <em>worked around</em> when they occur, an example of which is a system resource (file, folder) not available and can be resolved by branching to a alternate set of processes until the requested resource is available. Priorit at run-time should obviously be given to critical errors as these can result in system malfunctions that are visible to the end user.</p>
+<p>A core <strong>non-functional requirement,</strong> when designing a system, is to adequately provision for potential errors and resolutions,. Solution Architects, as designers of systems, must consider numerous <em>hypothetical</em> problematic scenarios and explore how errors can be <strong>trapped and</strong> <strong>subsequently</strong> <strong>handled</strong> , resolved and or mitigated to ensure that the system continues to function wit minimum impact on other components.</p>
+<p>Errors, as we know, can occur for several reasons ranging from incorrect user input, resource access rights privileges, failures complex message exchanges due to formats between systems and with the numerous scenarios how do we start planning for the worst case? well one approach is to start with a simple set of <strong><em>try / catch</em></strong> options encapsulating a catch all default which can then be expanded.</p>
+<p>Below Is a simple depiction of a flow between an action and the desired outcome and where a event fails the elements to consider, <em>obviously this is very generic and only there for illustrate purposes</em>;</p>
+<p><img alt="Alt text" src="../image-6.png" /></p>
+<p>The basic illustration above highlights some possible flows which are discussed below;</p>
+<ol>
+<li>An action either a <em>manual</em> or <em>automatic</em> task invokes a system event e.g. a piece of executable code, invocation of  API call, a script or a system to system event.</li>
+<li>Upon successful completion of the task the event returns a predefined ‘agreed’ code or message informing that the event that the task completed  successfully.</li>
+<li>In the event of a non-critical failure the event handler of the event will automatically <strong><em>retry</em></strong> the operation and can be configured for multiple retries depending on the use case being performed.</li>
+<li>If the retry policy fails , then one option (subject to the type of scenario) would be to send the message or request data to a dead letter que (<strong>DLQ</strong>) i.e. a que set detached for future re-processing or follow on actions.</li>
+<li>If the task resulted in a error , one which has been provisioned for i.e. a <strong><em>known unknown</em></strong>, e.g<strong><em>.</em></strong> lack of a system resource then an <em>error code</em> is returned or handled by the event handler.</li>
+<li>If the fault is an exception, often caused by the code of the application e.g., a variable divided by zero and thus not possible to recover then this would be captured and recorded in an audit file(log file). Log files are used as a record / audit to track all events in a system and allow support staff resolve issues offline.</li>
+<li>Upon catching an error or exception that has occurred it would be prudent to <strong><em>time stamp</em></strong> the event when writing to the associated log file.</li>
+<li>In most cases one will, by default, introduce a retry policy e.g., <em>try every n minutes for  x times</em> before failing the request. Again a predefined code will be remitted or notified to the recipient or to a central management system.</li>
+<li>The error policies will also define return codes that relate to specific errors and any  additional information allowing management / control system or processes to handle and resolve.</li>
+<li>All triggered events should receive a return message or code i.e., a notification of success or failure.</li>
+</ol>
+<p>The above, while very basic, highlights possible actions / flows relating to handling error events, which return a message or predefined code that notify of success or failure and thus support and diagnosis and process continuation steps.</p>
+<p>Most interactions will follow an <strong><em>action, event, response</em></strong> pattern, where a action will trigger an event that will receive a response and by understanding which are fast becoming industry standards as are http status codes and enable the troubleshooting required when operating systems and sites.</p>
+<p>System Solution Designs will encapsulate , at a minimum, a set of operations between a client and a web server using HTTP methods, POST, GET, PUT, PATCH, and DELETE which match to create, read, update, and delete (CRUD) operations, respectively.</p>
+<p>HTTP status codes are <strong>three-digit numbers</strong> which, as previously mentioned,  indicate the status of a client's request to a server and at a macro level they are used to indicate if the .</p>
+<ul>
+<li>Request was successful.</li>
+<li>Client needs to take further action and</li>
+<li>If an error occurred.</li>
+</ul>
+<p>These 3 digit codes are clustered into 5 discrete areas of concern  or class of codes, which range from 100 – 500s where the ;</p>
+<p><img alt="Alt text" src="../image-8.png" /></p>
+<ul>
+<li><strong>100s:</strong> represent a set of <strong>Informational</strong> codes that highlight that a request initiated by the browser is continuing.</li>
+<li><strong>200s:</strong> are <strong>Success</strong> codes and returned when a browser request is received, understood, and processed successfully by the server.</li>
+<li><strong>300s:</strong> represent a <strong>Redirection</strong> when a new resource has been substituted for the requested resource.</li>
+<li><strong>400s</strong>: <strong>Client</strong> codes show a problem with the request at the client side.</li>
+<li><strong>500s:</strong> <strong>Server</strong> codes show a request was accepted, but an error was returned by the server which prevented the fulfilment of the request e.g. an API Gateway receives the inbound request but cannot be fulfilled by the backend system for various reasons</li>
+</ul>
+<p>Within each of these ranges above, a variety of server codes exist and may be returned by the server. Each individual code has a specific and unique meaning and discussed below;</p>
+<h1 id="http-status-codes">HTTP Status Codes<a class="headerlink" href="#http-status-codes" title="Permanent link">&para;</a></h1>
+<p>Numerous server status codes exist, and you will only encounter a few consistently hence we only discuss the common ones but please note there are many more.</p>
+<h3 id="100-status-codes">100 Status Codes<a class="headerlink" href="#100-status-codes" title="Permanent link">&para;</a></h3>
+<p>A 100-level status code informs you that the request you’ve made to the server is still in progress. It represents additional information to let you know what’s going on.</p>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-yfti-tbllook: 1184;"><tbody><tr><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span style="font-size: medium;">Code</span></b><b><o:p></o:p></b></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b>Response</b><b><o:p></o:p></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p align="center" class="MsoNormal" style="text-align: center;"><b><span style="font-size: medium;">Comment</span></b><b><o:p></o:p></b></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">100<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Continue<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This signifies that the server in question has received the browser’s request <i>headers</i> and is now ready for the request <i>body</i> to be sent as well. Making the request process more efficient since it prevents the browser from sending a body request when the headers have been rejected.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">101<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">Switching protocols<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">Your browser has asked the server to change protocols, and the server has complied.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">102<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Processing<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">When a server sends the 102-status code, the client will keep the HTTP Connection alive and wait for the final HTTP response to arrive. This avoids timeout of the request</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">103<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Early hints<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This returns limited response headers before the rest of the server’s response is ready to send.<span style="font-size: medium;"><o:p></o:p></span></span></p></td></tr></tbody></table>
+
+<h3 id="200-status-codes">200 Status Codes<a class="headerlink" href="#200-status-codes" title="Permanent link">&para;</a></h3>
+<p>A 200 level response means that everything is working as it should be - Happy Codes 😊</p>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-yfti-tbllook: 1184;"><tbody><tr><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;, sans-serif" style="font-size: medium;">Code</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;, sans-serif" style="font-size: medium;">Response</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;, sans-serif" style="font-size: medium;">Comment</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">200<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">OK<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The request succeeded where success is related to the HTTP method<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">201<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Created<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server has fulfilled the browser’s request, and as a result, has created a new resource.</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;"> This is typically the response sent after POST requests, or some PUT requests.</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">202<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Accepted<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server has accepted the request but is still processing it. The request ultimately may or may not result in a completed response.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">203<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Non-Authoritative Information<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This status code may appear when you use a proxy e.g. a API Gateway with the </span><span face="&quot;Calibri Light&quot;, sans-serif" style="background-color: white; background: white;">response code could indicate the returned metadata is not exactly the same as is available from the origin server in other words the </span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">gateway received a 200 “OK” status code from the origin server but modified the response before passing it on to your browser.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">204<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">No Content<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This code means that the server has successfully processed the request but is not going to return any content however the headers may be useful.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">205<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Reset Content<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Informs the user agent to reset the document which sent this request.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">206<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Partial Content<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Enables a browser to resume paused downloads, as well as to split a download into multiple streams. A 206 code is sent when a range header causes the server to send only part of the resource<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">207<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Mixture of Responses<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">207 (<i>also the bus I used to take to school</i>) as a Http code represents a multi-Status response i.e.&nbsp; mixture of responses supplying the status for multiple independent processes used by WebDAV servers<span style="font-size: medium;"><o:p></o:p></span></span></p></td></tr></tbody></table>
+
+<h3 id="300-redirection-status-codes">300 Redirection Status Codes<a class="headerlink" href="#300-redirection-status-codes" title="Permanent link">&para;</a></h3>
+<p>There are several HTTP statuses codes that go with redirections, i.e., when a resource has moved these are.</p>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-yfti-tbllook: 1184;"><tbody><tr><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Code</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Response</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Comment</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><span style="font-size: medium;">300</span><o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Multiple Choices<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;, sans-serif" style="background-color: white; background: white;">The request has more than one possible response and the user should choose one of them.</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"> This may occur when there are multiple file type extensions available.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">301<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Moved Permanently<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The URL of the requested resource has changed permanently. The new URL is provided in the response.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">302<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Found<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The requested resource was found, however not at the location where it was expected - used for temporary URL redirection.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">303<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">See Other<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">A 303 code tells the browser that it found the resource requested via POST, PUT, or DELETE. However, the server sent this response to direct the client to get the requested resource at another URL with a GET request<span style="background-color: white; background: white;">.</span></span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">304<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Not Modified<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This is used for caching purposes and informs the browser that the resources stored in the cache hasn’t changed.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">307<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Temporary Redirect.<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server sends this response to direct the client to get the requested resource at another URL with the same method that was used in the prior request. Note unlike the 302-status code, it does not allow the HTTP method to change<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">308<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Permanent Redirect.<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Indicates that the requested resource is now permanently found at a new URL.<span style="font-size: medium;"><o:p></o:p></span></span></p></td></tr></tbody></table>
+
+<h3 id="400-client-error-status-codes">400 Client Error Status Codes<a class="headerlink" href="#400-client-error-status-codes" title="Permanent link">&para;</a></h3>
+<p>At the 400 level, HTTP status codes start to become problematic. These are error codes specifying that there’s a fault with your browser and/or request.</p>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-yfti-tbllook: 1184;"><tbody><tr><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Code</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Response</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Comment</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><span style="font-size: medium;">400</span><o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Bad Request<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server cannot or will not process the request due to a client error (e.g., malformed request syntax, invalid request message etc).<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">401<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Unauthorized<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This is returned by the server when the target resource lacks valid credentials, and t</span><span face="&quot;Calibri Light&quot;,sans-serif" style="background-color: white; background: white; color: #1b1b1b; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">he client must authenticate itself to get the requested response</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">402<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Payment Required<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This response code is reserved for future use and may be used to indicate that a request cannot be fulfilled, usually due to a lack of required funds.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">403<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Forbidden<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This code is returned when a user attempts to access something they do not have permission to view.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">404<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Not found<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server cannot find the requested resource. i.e., the requested resource does not exist.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">405<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Method not allowed<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The request method is known by the server but is not supported by the target resource. For example, an API Gateway may not allow calling DELETE to remove a resource.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">406<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Not acceptable response.”<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This response is sent when the web server doesn't find any content that conforms to the criteria given.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">407<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Proxy Authentication Required<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">A proxy server requires the browser to authenticate itself before continuing.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">408<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server timed out waiting for the rest of the request from the browser.<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This code is generated when a server times out while waiting for the complete request from the browser. In other words, the server didn’t get the full request that was sent by the browser. One possible cause could be net congestion resulting in the loss of data packets between the browser and the server.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">409<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Conflict<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server couldn’t process because there’s a conflict with the relevant resource and can occur due to multiple simultaneous edits<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">410<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Gone<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The requested content has been permanently deleted from server, with no forwarding address.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">411<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Length Required.<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The requested resource requires the client specify a certain length and it did not.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">412<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Precondition Failed<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The client indicated preconditions in its headers which the server does not meet.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">413<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Payload Too Large<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Your request is larger than the server is willing or able to process.</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;"></span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">414<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">URI Too Long<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The URL requested by the client is longer than the server is willing to decode.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">415<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Unsupported Media Type<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The request includes a media type that the server or resource does not support.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">416<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Range Not Satisfiable.<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The request is for a part of a resource that the server is unable to return.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">417<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Expectation Failed<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server is unable to meet the requirements specified in the request’s expect header field.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">418<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><i><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">I’m a teapot<o:p></o:p></span></i></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server refuses the attempt to brew coffee with a teapot. It’s an April Fool’s Joke from 1998?<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">422<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Un processable Entity<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The client request has <i>semantic</i> errors, and the server can’t process it.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">425<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Too Early<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Server is unwilling to process a request because it may be repeated.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">426<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Upgrade Required<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Refusal to perform the request using the current protocol but might be willing to do so after the client upgrades to another protocol.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="border: 1pt none windowtext; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-border-alt: none windowtext 0cm; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin; padding: 0cm;">428</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Precondition Required<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server requires conditions to be specified before processing the request.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">429<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Too many requests<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">User has sent too many requests in a given amount of time (rate-limiting).<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="border: 1pt none windowtext; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-border-alt: none windowtext 0cm; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin; padding: 0cm;">431</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Request Header Fields Too Large<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server can’t process the request because the header fields are too large. The request may be resubmitted after reducing the size of the request header fields.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">451<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 77.95pt;" valign="top" width="104"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Unavailable for Legal Reasons<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 330.25pt;" valign="top" width="440"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server prohibits access to the resource you’ve requested (or a set of resources including the one you’ve requested) that cannot legally be provided,<span style="font-size: medium;"><o:p></o:p></span></span></p></td></tr></tbody></table>
+
+<h4 id="500-server-error-status-codes">500 Server Error Status Codes<a class="headerlink" href="#500-server-error-status-codes" title="Permanent link">&para;</a></h4>
+<p>500-level status codes are also considered errors. However, they denote that the problem is on the server’s end. This can make them more difficult to resolve.</p>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-yfti-tbllook: 1184;"><tbody><tr><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Code</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Response</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td><td style="background-color: #9cc2e5; background: rgb(156, 194, 229); border-left: none; border: 1pt solid windowtext; mso-background-themecolor: accent5; mso-background-themetint: 153; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p align="center" class="MsoNormal" style="text-align: center;"><span style="font-size: medium;"><b><span face="&quot;Calibri Light&quot;, sans-serif">Comment</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><span style="font-size: medium;">500</span><o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Internal Server Error<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server has met a situation it does not know how to manage. This code is typically generated by third-party plugins, faulty script or a database connection issue.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">501<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Not Implemented<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This error shows that the server does not support the functionality required to fulfil the request.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">502<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Bad Gateway<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This error response means that the server, while working as a gateway to get a response needed to handle the request, got an invalid response.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">503<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Service Unavailable<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server is not ready to handle the request this could arise </span><span face="&quot;Calibri Light&quot;,sans-serif" style="background-color: white; background: white; color: #1b1b1b; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">when a&nbsp; server is down for maintenance or simply overloaded.</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">504<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Gateway Timeout<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">This error response is given when the server is acting as a gateway and cannot get a response in time.<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">505<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">HTTP Version Not Supported<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">The server doesn’t support the HTTP version the client used to make the request e.g. a FTP Server<o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">508<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="border: 1pt none windowtext; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-border-alt: none windowtext 0cm; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin; padding: 0cm;">Resource Limit Is Reached</span></b><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">limits on resources set by your web host have been reached examples could be when a s</span><span face="&quot;Calibri Light&quot;,sans-serif" style="background-color: white; background: white; color: #1b1b1b; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">ervers an infinite loop while processing the request</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">509<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Bandwidth Limit Exceeded<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Normally is displayed when </span><span face="&quot;Calibri Light&quot;, sans-serif" style="background-color: white; background: white;">a site is receiving too much traffic than the host can allow,</span><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr><tr><td style="border-top: none; border: 1pt solid windowtext; mso-border-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 42.3pt;" valign="top" width="56"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">511<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 3cm;" valign="top" width="113"><p align="center" class="MsoNormal" style="text-align: center;"><b><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;">Network Authentication Required<o:p></o:p></span></b></p></td><td style="border-bottom-color: windowtext; border-bottom-width: 1pt; border-bottom: 1pt solid windowtext; border-left: none; border-right-color: windowtext; border-right-width: 1pt; border-right: 1pt solid windowtext; border-style: none solid solid none; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0cm 5.4pt; width: 323.15pt;" valign="top" width="431"><p class="MsoNormal"><span face="&quot;Calibri Light&quot;,sans-serif" style="mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-hansi-theme-font: major-latin;">The request requires added authentication before the request can be serviced. Note: <i>This status is not generated by origin servers, but by the intercepting proxies that control access to the network</i><span style="background-color: white; background: white; color: #202124;">.</span></span><span face="&quot;Calibri Light&quot;,sans-serif" style="font-size: large; mso-ascii-theme-font: major-latin; mso-bidi-theme-font: major-latin; mso-fareast-language: EN-GB; mso-hansi-theme-font: major-latin;"><o:p></o:p></span></p></td></tr></tbody></table>
+
+<p>Using the above we can transpose the codes onto a set of flows for a typical n-tier web system where the client sends a HTTP Method request to a web server which can orchestrate the relevant command and return one of the above codes listed to highlight the result from the method.</p>
+<p>A Web Server (http listener) will communicate and exchange messages with downstream  systems using similar methods and exploiting the codes listed above to act as a mechanism of process control via the notification responses - consider the illustration below and the exchange of messages.</p>
+<p><img alt="Alt text" src="../image-9.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../overrides/extra.js"></script>
+      
+    
+  </body>
+</html>

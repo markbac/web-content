@@ -1,0 +1,94 @@
+= Best Practices When Documenting Your Code for Software Engineers
+
+It’s all about clear, asynchronous communication
+
+image:image.png[Alt text]
+
+As a software engineer, it is very important to acquire the skill of writing high-quality documentation. Due to the recent increase in remote work, it has become even more important to be better at asynchronous communication. Remote company GitLab does an excellent job of https://about.gitlab.com/company/culture/all-remote/asynchronous/[defining asynchronous communication]:
+
+____
+
+“Asynchronous communication is the art of communicating and moving projects forward without the need for additional stakeholders to be available at the same time your communique is sent.”
+
+____
+
+High-quality documentation is an easier way to achieve effective asynchronous communication. In this article, I am going to talk about some interesting tips that I have found very useful in my personal experience.
+
+== Google Tech Writing Course
+
+Google offers a free tech writing course for software engineers. It starts with the fundamentals of tech writing. There are two courses and the content is as shown below:
+
+image:image-1.png[Alt text]
+
+TOC — Google Tech Writing One
+
+image:image-2.png[Alt text]
+
+TOC — Google Tech Writing Two
+
+Being good at tech writing does not happen overnight. It takes practice. I personally prefer visiting this course each month to remind myself of the best practices.
+
+== Using the Divio Documentation Framework
+
+Amongst all other documentation frameworks, I personally like https://www.divio.com/[Divio] the best. The documentation systems suggested there are easy and universally applicable.
+
+The framework suggests classifying documentation in the following types:
+
+* Tutorials — Learning-oriented
+* How-To Guides — Problem-solving-oriented
+* Explanation — Understanding-oriented
+* Reference — Information-oriented
+
+The scheme is https://documentation.divio.com/adoption/#adoption[widely adopted] by a lot of famous open source projects and enterprises.
+
+Here is a great video explaining the details of the framework:
+
+== Use Markdown-Based Systems for Documentation
+
+In a typical enterprise, there are various ways you can maintain your documentation. Some people prefer creating MS Word/Excel documents and uploading those in SharePoint or OneDrives. The biggest problem with such documents is that they are not searchable using your internal search engine. Hence I personally prefer using Markdown-based documentation systems. Creating and maintaining documentation is easy and the documentation is searchable.
+
+If you are not familiar with Markdown, you can easily master it. Check out this free recommended https://guides.github.com/features/mastering-markdown/[course] from GitHub.
+
+== Using Mermaid JS for Diagrams
+
+According to http://mermaid-js.github.io/mermaid/[Mermaid] itself, it “is a Javascript-based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams.” If you are using GitLab or Azure DevOps, Mermaid is natively supported. If you are using GitHub or Atlassian products, then there are plug-ins available.
+
+With Mermaid, creating and updating diagrams is very easy and you don’t need to have any UML tools like Visio/draw.io installed on every developer’s workstation.
+
+Here are some sample diagrams created with Mermaid
+
+image:image-3.png[Alt text]
+
+Sample Sequence Diagram using Mermaid
+
+image:image-4.png[Alt text]
+
+Sample Class Diagram using Mermaid
+
+You can try out creating diagrams using the https://mermaid-js.github.io/mermaid-live-editor/[Mermaid Live Editor] as well.
+
+== Use Templates
+
+There are numerous templates available on various sites like Confluence that can be used for specific types of documents. For example:
+
+* https://www.atlassian.com/software/confluence/templates/software-architecture-review[Software Architecture Review Template]
+* https://github.com/deshpandetanmay/lightweight-architecture-decision-records/blob/master/doc/adr/0001-use-elasticsearch-for-search-api.md[Architecture Decision Record Template]
+* https://www.atlassian.com/software/confluence/templates/incident-postmortem[Incident Postmortem Template]
+* https://www.atlassian.com/software/confluence/templates/devops-runbook[DevOps Runbook]
+* https://www.atlassian.com/software/confluence/templates/decision[Decision Template]
+* https://www.atlassian.com/software/confluence/templates/writing-guidelines[Writing Guidelines]
+* https://www.atlassian.com/software/confluence/templates/okrs[OKR Template]
+* Etc.
+
+== Refer to Style Guides
+
+If your team does not have a style guide already, refer to what the Googles and Microsofts of the world do:
+
+* https://docs.microsoft.com/en-us/style-guide/[Microsoft Style Guide]
+* https://developers.google.com/style[Google Developer Documentation Style Guide]
+
+== References
+
+* https://developers.google.com/tech-writing[Google Tech Writing Course]
+* https://documentation.divio.com/[Divio Documentation Framework]
+* https://mermaid-js.github.io/mermaid/#/[Mermaid]

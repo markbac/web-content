@@ -1,0 +1,3513 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference">
+      
+      
+        <meta name="author" content="Mark Bacon">
+      
+      
+        <link rel="canonical" href="https://example.com/Architecture/SFIA/">
+      
+      
+        <link rel="prev" href="../HttpStatusCodes/">
+      
+      
+        <link rel="next" href="../SolutionDesign/">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>SFIA - Reference</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sfia" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Reference" class="md-header__button md-logo" aria-label="Reference" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Reference
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SFIA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Reference" class="md-nav__button md-logo" aria-label="Reference" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Reference
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DurabilityInCoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DurabilityInCoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HttpStatusCodes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reflecting on Error Management and listing HTTP Status Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SFIA
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SFIA
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#solution-architect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution Architect
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution Architect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-architecture-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution architecture: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-architecture-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution architecture: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-architecture-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution architecture: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enterprise and business architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture-level-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture: Level 7
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmingsoftware-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programming/software development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Software design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-time/embedded systems development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SolutionDesign/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SolutionDesign
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UnderstandingTheC4Model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding the C4 Model for Software Architecture Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_decision_framework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture decision framework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scaling_the_practice_of_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaling the Practice of Architecture, Conversationally
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tempLinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C4 Model
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            C4 Model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C4%20Model/c4%20model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    c4 model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Explanation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            Explanation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/12_software_architecture_styles-software_engineers_should_know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Software Architecture Styles Software Engineers Should Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/best-practices-when-documenting-your-code-for-software-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices When Documenting Your Code for Software Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    explanation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explanation/what_is_solution_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Solution Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HLD
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            HLD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HLD/hld/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HLD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HowTo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            HowTo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HowTo/api-doc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create docs from an Open API Spec
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HowTo/howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    howto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/10-architecture-patterns-to-know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Design Patterns every Software Architect and Software Engineer must know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/12_software_architecture_styles-software_engineers_should_know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Software Architecture Styles Software Engineers Should Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/23-fundamental-principles-in-sw-arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23 Fundamental Principles in Software Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/7-architecture-design-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Architecture Design Patterns — You wish you knew before interview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/Git-branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Branching Methodologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/The-important-architecturla-patterns-you-need-to-know/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Architecture: The Most Important Architectural Patterns You Need to Know
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/best-practices-when-documenting-your-code-for-software-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Best Practices When Documenting Your Code for Software Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/codeImplementation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code - General Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/git_branching_strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing the Right Git Branching Strategy: A Comparative Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/habits_of_great_software_engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Habits of great software engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/microservices-checklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microservices Checklist — Cover All Aspects of Microservices Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/naming-conventions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Naming Convention
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/pragmatic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Pragmatic Programmer Quick Reference Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/throughput_and_latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Throughput &amp; Latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/uid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Wild World of Unique Identifiers (UUID, ULID, etc)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/uid_comparison/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Globally Unique Identifier a fair comparison
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what-is-MACH/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A Comprehensive Guide to MACH Architecture in 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what-is-the-C4-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture Method : C4 Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/what_is_solution_architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is Solution Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14_21" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14_21" id="__nav_2_14_21_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Media
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_14_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14_21">
+            <span class="md-nav__icon md-icon"></span>
+            Media
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/media/media/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    media
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tutorials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_16" id="__nav_2_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Adr
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_16">
+            <span class="md-nav__icon md-icon"></span>
+            Adr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/adr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/decision_record_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision record template by Michael Nygard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_17" id="__nav_2_17_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architectural principles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_17">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/SOLID/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SOLID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/architectural_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    architectural_principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/design-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural_principles/john_lewis_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    John Lewis Software Engineering Principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_18" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_18" id="__nav_2_18_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rfcs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_18">
+            <span class="md-nav__icon md-icon"></span>
+            Rfcs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rfcs/rfc-template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RFC Template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rfcs/rfcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rfcs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19" id="__nav_2_19_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Structurizr
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19">
+            <span class="md-nav__icon md-icon"></span>
+            Structurizr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/structurizr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    structurizr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_2" id="__nav_2_19_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Adrs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_19_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_2">
+            <span class="md-nav__icon md-icon"></span>
+            Adrs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/adrs/0001-record-architecture-decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/adrs/adrs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    adrs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_3" id="__nav_2_19_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_19_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_3">
+            <span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/0001-design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_19_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_19_3_3" id="__nav_2_19_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Images
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_19_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_19_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structurizr/docs/images/images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    images
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/AI/aiPrompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aiPrompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MyBooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            MyBooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Biographies_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Biographies books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Football_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Football books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/IT_related_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IT related books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/Science_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Science books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/MyBooks/updated_books/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Updated books
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scrum
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Scrum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/acceptance_criteria_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acceptance criteria template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/sprint_goal_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint goal template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../General/Scrum/user_story_template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    User story template
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#solution-architect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution Architect
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution Architect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-architecture-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution architecture: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-architecture-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution architecture: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-architecture-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution architecture: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enterprise and business architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-and-business-architecture-level-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise and business architecture: Level 7
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmingsoftware-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programming/software development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmingsoftware-development-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programming/software development: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Software design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-design-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software design: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-time/embedded systems development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-timeembedded-systems-development-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time/embedded systems development: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidance-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidance notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-design-level-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware design: Level 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<ul>
+<li><a href="#sfia">SFIA</a></li>
+<li><a href="#solution-architect">Solution Architect</a><ul>
+<li><a href="#guidance-notes">Guidance notes</a></li>
+<li><a href="#solution-architecture-level4">Solution architecture: Level 4</a></li>
+<li><a href="#solution-architecture-level5">Solution architecture: Level 5</a></li>
+<li><a href="#solution-architecture-level6">Solution architecture: Level 6</a></li>
+</ul>
+</li>
+<li><a href="#enterprise-and-business-architecture">Enterprise and business architecture</a><ul>
+<li><a href="#guidance-notes-1">Guidance notes</a></li>
+<li><a href="#enterprise-and-business-architecture-level5">Enterprise and business architecture: Level 5</a></li>
+<li><a href="#enterprise-and-business-architecture-level6">Enterprise and business architecture: Level 6</a></li>
+<li><a href="#enterprise-and-business-architecture-level7">Enterprise and business architecture: Level 7</a></li>
+</ul>
+</li>
+<li><a href="#programmingsoftware-development">Programming/software development</a><ul>
+<li><a href="#guidance-notes-2">Guidance notes</a></li>
+<li><a href="#programmingsoftware-development-level2">Programming/software development: Level 2</a></li>
+<li><a href="#programmingsoftware-development-level3">Programming/software development: Level 3</a></li>
+<li><a href="#programmingsoftware-development-level4">Programming/software development: Level 4</a></li>
+<li><a href="#programmingsoftware-development-level5">Programming/software development: Level 5</a></li>
+<li><a href="#programmingsoftware-development-level6">Programming/software development: Level 6</a></li>
+</ul>
+</li>
+<li><a href="#software-design">Software design</a><ul>
+<li><a href="#guidance-notes-3">Guidance notes</a></li>
+<li><a href="#software-design-level2">Software design: Level 2</a></li>
+<li><a href="#software-design-level3">Software design: Level 3</a></li>
+<li><a href="#software-design-level4">Software design: Level 4</a></li>
+<li><a href="#software-design-level5">Software design: Level 5</a></li>
+<li><a href="#software-design-level6">Software design: Level 6</a></li>
+</ul>
+</li>
+<li><a href="#real-timeembedded-systems-development">Real-time/embedded systems development</a><ul>
+<li><a href="#guidance-notes-4">Guidance notes</a></li>
+<li><a href="#real-timeembedded-systems-development-level2">Real-time/embedded systems development: Level 2</a></li>
+<li><a href="#real-timeembedded-systems-development-level3">Real-time/embedded systems development: Level 3</a></li>
+<li><a href="#real-timeembedded-systems-development-level4">Real-time/embedded systems development: Level 4</a></li>
+<li><a href="#real-timeembedded-systems-development-level5">Real-time/embedded systems development: Level 5</a></li>
+<li><a href="#real-timeembedded-systems-development-level6">Real-time/embedded systems development: Level 6</a></li>
+</ul>
+</li>
+<li><a href="#hardware-design">Hardware design</a><ul>
+<li><a href="#guidance-notes-5">Guidance notes</a></li>
+<li><a href="#hardware-design-level3">Hardware design: Level 3</a></li>
+<li><a href="#hardware-design-level4">Hardware design: Level 4</a></li>
+<li><a href="#hardware-design-level5">Hardware design: Level 5</a></li>
+<li><a href="#hardware-design-level6">Hardware design: Level 6</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="sfia">SFIA<a class="headerlink" href="#sfia" title="Permanent link">&para;</a></h1>
+<h2 id="solution-architect">Solution Architect<a class="headerlink" href="#solution-architect" title="Permanent link">&para;</a></h2>
+<p>Developing and communicating a multi-dimensional solution architecture to deliver agreed business outcomes.</p>
+<h3 id="guidance-notes">Guidance notes<a class="headerlink" href="#guidance-notes" title="Permanent link">&para;</a></h3>
+<p>Activities may include — but are not limited to:</p>
+<ul>
+<li>defining the planned operation and maintenance of the solution within a production environment — include changes to services, process, organisation, and operating models as well as technology </li>
+<li>ensuring that existing and planned solution components are compatible with relevant architectures, strategies, policies, standards and practices </li>
+<li>considering requirements for security, privacy and testing of solutions</li>
+<li>taking account of relevant architectures, strategies, policies, standards and practices </li>
+<li>identifying appropriate cloud services</li>
+<li>developing roadmaps to migrate components to cloud services</li>
+<li>developing and communicating an implementation roadmap </li>
+<li>providing guidance and risk-based governance to support solution implementation including managing requests for changes and deviations from specifications.</li>
+</ul>
+<h3 id="solution-architecture-level-4">Solution architecture: Level 4<a class="headerlink" href="#solution-architecture-level-4" title="Permanent link">&para;</a></h3>
+<p>Contributes to the development of solution architectures in specific business, infrastructure or functional areas.</p>
+<p>Identifies and evaluates alternative architectures and the trade-offs in cost, performance and scalability. Determines and documents architecturally significant decisions.</p>
+<p>Produces specifications of cloud-based or on-premises components, tiers and interfaces, for translation into detailed designs using selected services and products.</p>
+<p>Supports projects or change initiatives through the preparation of technical plans and application of design principles. Aligns solutions with enterprise and solution architecture standards (including security).</p>
+<h3 id="solution-architecture-level-5">Solution architecture: Level 5<a class="headerlink" href="#solution-architecture-level-5" title="Permanent link">&para;</a></h3>
+<p>Leads the development of solution architectures in specific business, infrastructure or functional areas.</p>
+<p>Leads the preparation of technical plans and ensures that appropriate technical resources are made available. Ensures that appropriate tools and methods are available, understood and employed in architecture development.</p>
+<p>Provides technical guidance and governance on solution development and integration. Evaluates requests for changes and deviations from specifications and recommends actions.</p>
+<p>Ensures that relevant technical strategies, policies, standards and practices (including security) are applied correctly.</p>
+<h3 id="solution-architecture-level-6">Solution architecture: Level 6<a class="headerlink" href="#solution-architecture-level-6" title="Permanent link">&para;</a></h3>
+<p>Leads the development of architectures for complex solutions ensuring consistency with agreed requirements.</p>
+<p>Establishes policies, principles and practices for the selection of solution architecture components.</p>
+<p>Manages trade-offs and balances functional, service quality and systems management requirements within a significant area of the organisation. Communicates proposed decisions to stakeholders.</p>
+<p>Coordinates and manages the target architecture across multiple projects or initiatives. Maintains a stable, viable architecture and ensures consistency of design and adherence to appropriate standards across multiple projects or initiatives.</p>
+<h2 id="enterprise-and-business-architecture">Enterprise and business architecture<a class="headerlink" href="#enterprise-and-business-architecture" title="Permanent link">&para;</a></h2>
+<p>Aligning an organisation's technology strategy with its business mission, strategy, and processes and documenting this using architectural models.</p>
+<h3 id="guidance-notes_1">Guidance notes<a class="headerlink" href="#guidance-notes_1" title="Permanent link">&para;</a></h3>
+<p>Enterprise architecture is typically considered across four domains: business, data, applications and infrastructure technologies. It may also include information security or legal and regulatory compliance.</p>
+<p>Activities may include — but are not limited to:</p>
+<ul>
+<li>translating business strategies and objectives into an operating model</li>
+<li>assessing current capabilities and identifying required changes in capabilities to achieve objectives</li>
+<li>describing the interrelationships between people, organisation, service, process, data, information, technology and the external environment</li>
+<li>creating, iterating, and maintaining architectural models and views embodying the key principles that describe the organisation's future state, and that enable its evolution</li>
+<li>implementing enterprise architecture working practices to support and enable iterative/agile working</li>
+<li>interpreting business goals and drivers</li>
+<li>documenting and communicating constraints, standards and guiding principles necessary to define, assure and govern the required evolution</li>
+<li>using architectural models and processes to facilitate changes in the organisation's structure, business processes, information or data, business systems and infrastructure</li>
+<li>describing where and why the enterprise will benefit from cloud-based services.</li>
+</ul>
+<h3 id="enterprise-and-business-architecture-level-5">Enterprise and business architecture: Level 5<a class="headerlink" href="#enterprise-and-business-architecture-level-5" title="Permanent link">&para;</a></h3>
+<p>Develops models and plans to drive the execution of the business strategy, taking advantage of opportunities to improve business performance.</p>
+<p>Contributes to creating and reviewing a systems capability strategy which meets the business's strategic requirements.</p>
+<p>Determines requirements and specifies effective business processes, through improvements in technology, information or data practices, organisation, roles, procedures and equipment.</p>
+<h3 id="enterprise-and-business-architecture-level-6">Enterprise and business architecture: Level 6<a class="headerlink" href="#enterprise-and-business-architecture-level-6" title="Permanent link">&para;</a></h3>
+<p>Develops enterprise-wide architecture and processes to embed the strategic application of change in the management of the organisation.</p>
+<p>Leads the creation and review of a systems capability strategy that meets the strategic requirements of the business. Ensures the buy-in of all key stakeholders.</p>
+<p>Captures and prioritises market and environmental trends, business strategies and objectives, and identifies the business benefits of alternative strategies. Develops and presents business cases for approval, funding and prioritisation of high-level initiatives.</p>
+<p>Sets strategies, policies, standards and practices to ensure compliance between business strategies, technology strategies, and enterprise transformation activities.</p>
+<h3 id="enterprise-and-business-architecture-level-7">Enterprise and business architecture: Level 7<a class="headerlink" href="#enterprise-and-business-architecture-level-7" title="Permanent link">&para;</a></h3>
+<p>Directs the development of enterprise-wide architecture and processes to embed the strategic application of change in the management of the organisation.</p>
+<p>Directs the creation and review of an enterprise capability strategy to support the strategic requirements of the business. Identifies the business benefits of alternative strategies.</p>
+<p>Ensures compliance between business strategies, enterprise transformation activities and technology directions, setting strategies, policies, standards and practices.</p>
+<h2 id="programmingsoftware-development">Programming/software development<a class="headerlink" href="#programmingsoftware-development" title="Permanent link">&para;</a></h2>
+<p>Developing software components to deliver value to stakeholders.</p>
+<h3 id="guidance-notes_2">Guidance notes<a class="headerlink" href="#guidance-notes_2" title="Permanent link">&para;</a></h3>
+<p>Activities may include — but are not limited to:</p>
+<ul>
+<li>identifying, creating and applying software development and security standards and processes</li>
+<li>planning and designing software components</li>
+<li>estimating time and effort required for software development</li>
+<li>constructing, amending and verifying software components</li>
+<li>applying test-driven development and ensuring appropriate test coverage</li>
+<li>using peer review techniques — such as pair programming</li>
+<li>documenting software components</li>
+<li>understanding and obtaining agreement to the value of the software components to be developed</li>
+<li>selecting appropriate development methods and life cycles</li>
+<li>applying recovery techniques to ensure the software being developed is not lost </li>
+<li>implementing appropriate change control to software development practices</li>
+<li>resolving operational problems with software and fixing bugs</li>
+</ul>
+<p>Depending on requirements and the characteristics of the project or assigned work  —  software development methods and life cycles can be predictive (plan-driven) approaches or adaptive (iterative/agile) approaches.</p>
+<h3 id="programmingsoftware-development-level-2">Programming/software development: Level 2<a class="headerlink" href="#programmingsoftware-development-level-2" title="Permanent link">&para;</a></h3>
+<p>Designs, codes, verifies, tests, documents, amends and refactors simple programs/scripts.</p>
+<p>Applies agreed standards and tools to achieve a well-engineered result.</p>
+<p>Reviews own work.</p>
+<h3 id="programmingsoftware-development-level-3">Programming/software development: Level 3<a class="headerlink" href="#programmingsoftware-development-level-3" title="Permanent link">&para;</a></h3>
+<p>Designs, codes, verifies, tests, documents, amends and refactors moderately complex programs/scripts.</p>
+<p>Applies agreed standards and tools to achieve a well-engineered result.</p>
+<p>Monitors and reports on progress. Identifies issues related to software development activities. Proposes practical solutions to resolve issues.</p>
+<p>Collaborates in reviews of work with others as appropriate.</p>
+<h3 id="programmingsoftware-development-level-4">Programming/software development: Level 4<a class="headerlink" href="#programmingsoftware-development-level-4" title="Permanent link">&para;</a></h3>
+<p>Designs, codes, verifies, tests, documents, amends and refactors complex programs/scripts and integration software services.</p>
+<p>Contributes to the selection of the software development methods, tools and techniques.</p>
+<p>Applies agreed standards and tools to achieve well-engineered outcomes.</p>
+<p>Participates in reviews of own work and leads reviews of colleagues' work.</p>
+<h3 id="programmingsoftware-development-level-5">Programming/software development: Level 5<a class="headerlink" href="#programmingsoftware-development-level-5" title="Permanent link">&para;</a></h3>
+<p>Takes technical responsibility across all stages and iterations of software development.</p>
+<p>Plans and drives software construction activities. Adopts and adapts appropriate software development methods, tools and techniques.</p>
+<p>Measures and monitors applications of project/team standards for software construction, including software security.</p>
+<p>Contributes to the development of organisational policies, standards, and guidelines for software development.</p>
+<h3 id="programmingsoftware-development-level-6">Programming/software development: Level 6<a class="headerlink" href="#programmingsoftware-development-level-6" title="Permanent link">&para;</a></h3>
+<p>Develops organisational policies, standards, and guidelines for software construction and refactoring.</p>
+<p>Plans and leads software construction activities for strategic, large and complex development projects.</p>
+<p>Adapts or develops new methods and organisational capabilities and drives adoption of, and adherence to policies and standards.</p>
+<h2 id="software-design">Software design<a class="headerlink" href="#software-design" title="Permanent link">&para;</a></h2>
+<p>Specifying and designing software to meet defined requirements by following agreed design standards and principles.</p>
+<h3 id="guidance-notes_3">Guidance notes<a class="headerlink" href="#guidance-notes_3" title="Permanent link">&para;</a></h3>
+<p>Activities may include — but are not limited to:</p>
+<ul>
+<li>designing software applications, components, interfaces and related characteristics (including security)</li>
+<li>using design concepts and patterns to develop software design and provide the basis for software construction and verification</li>
+<li>evaluating alternative solutions and trade-offs to facilitate design decisions</li>
+<li>taking into account functional and non-functional requirements such as the target environment, performance, security and existing systems</li>
+<li>developing prototypes/simulations to enable informed decision-making</li>
+<li>adopting and adapting software design models, tools and techniques based on the context of the work.</li>
+</ul>
+<p>Depending on requirements and project or work assigned characteristics, software design techniques can be predictive (plan-driven) or adaptive (iterative/agile) approaches.</p>
+<h3 id="software-design-level-2">Software design: Level 2<a class="headerlink" href="#software-design-level-2" title="Permanent link">&para;</a></h3>
+<p>Creates and documents detailed designs for simple software applications or components.</p>
+<p>Applies agreed modelling techniques, standards, patterns and tools.</p>
+<p>Contributes to the design of components of larger software systems.</p>
+<p>Reviews own work.</p>
+<h3 id="software-design-level-3">Software design: Level 3<a class="headerlink" href="#software-design-level-3" title="Permanent link">&para;</a></h3>
+<p>Undertakes complete design of moderately complex software applications or components.</p>
+<p>Applies agreed standards, guidelines, patterns and tools. Assists as part of a team in the design of components of larger software systems. Specifies user and/or system interfaces.</p>
+<p>Creates multiple design views to address the different stakeholders' concerns and to handle functional and non-functional requirements. Assists in the evaluation of options and trade-offs.</p>
+<p>Collaborates in reviews of work with others as appropriate.</p>
+<h3 id="software-design-level-4">Software design: Level 4<a class="headerlink" href="#software-design-level-4" title="Permanent link">&para;</a></h3>
+<p>Designs complex software applications, components and modules.</p>
+<p>Uses appropriate modelling techniques following agreed software design standards, guidelines, patterns and methodology. Creates and communicates multiple design views to balance stakeholders' concerns and to satisfy functional and non-functional requirements. Identifies, evaluates and recommends alternative design options and trade-offs.</p>
+<p>Models, simulates or prototypes the behaviour of proposed software to enable approval by stakeholders, and effective construction of the software. Verifies software design by constructing and applying appropriate methods.</p>
+<p>Reviews, verifies and improves own designs against specifications. Leads reviews of others’ designs.</p>
+<h3 id="software-design-level-5">Software design: Level 5<a class="headerlink" href="#software-design-level-5" title="Permanent link">&para;</a></h3>
+<p>Specifies and designs large or complex software applications, components and modules.</p>
+<p>Adopts and adapts software design methods, tools and techniques. Undertakes impact analysis on major design options, makes recommendations and assesses and manages associated risks. Specifies prototypes/simulations to enable informed decision-making.</p>
+<p>Evaluates software designs to ensure adherence to standards and identifies corrective action. Ensures that the software design balances functional, quality, security and systems management requirements.</p>
+<p>Contributes to the development of organisational software design and architecture policies and standards.</p>
+<h3 id="software-design-level-6">Software design: Level 6<a class="headerlink" href="#software-design-level-6" title="Permanent link">&para;</a></h3>
+<p>Leads the selection and development of software design methods, tools and techniques.</p>
+<p>Develops organisational policies, standards, and guidelines for software design and software architectures.</p>
+<p>Ensures adherence to technical strategies and systems architectures (including security).</p>
+<h2 id="real-timeembedded-systems-development">Real-time/embedded systems development<a class="headerlink" href="#real-timeembedded-systems-development" title="Permanent link">&para;</a></h2>
+<p>Designing and developing reliable real-time software typically within embedded systems.</p>
+<h3 id="guidance-notes_4">Guidance notes<a class="headerlink" href="#guidance-notes_4" title="Permanent link">&para;</a></h3>
+<p>Embedded systems provide a dedicated function within a more extensive mechanical or electronic system with real-time, safety, security, and reliability constraints. Typically, it involves interfacing with hardware, sensors, and actuators for monitoring and control in industrial, automotive, aerospace, medical or robotic equipment, including IoT (Internet of Things) devices and intelligent systems.</p>
+<p>These systems typically perform critical functions and have demanding requirements including — but not limited to — integrity, reliability, safety, security or power consumption.</p>
+<p>Activities may include — but are not limited to:</p>
+<ul>
+<li>defining non-functional system requirements such as performance, reliability, safety, and security, including requirements for power, cost, physical space or response time </li>
+<li>building in fail-safe/secure characteristics for graceful degradation</li>
+<li>using specialist techniques to define systems and to assure essential attributes are achieved</li>
+<li>applying comprehensive verification, validation and testing methods and techniques</li>
+<li>using specialised tools such as in-circuit emulators, logic analysers and digital oscilloscopes.</li>
+</ul>
+<h3 id="real-timeembedded-systems-development-level-2">Real-time/embedded systems development: Level 2<a class="headerlink" href="#real-timeembedded-systems-development-level-2" title="Permanent link">&para;</a></h3>
+<p>Designs, builds and tests simple real-time/embedded components as part of an overall larger systems design.</p>
+<p>Uses appropriate programming languages to drive simple sensors and actuators.</p>
+<p>Learns to use specialised tools such as in-circuit emulators, logic analysers and digital oscilloscopes.</p>
+<h3 id="real-timeembedded-systems-development-level-3">Real-time/embedded systems development: Level 3<a class="headerlink" href="#real-timeembedded-systems-development-level-3" title="Permanent link">&para;</a></h3>
+<p>Designs, builds and integrates medium-complexity real-time/embedded components as part of an overall larger systems design.</p>
+<p>Follows agreed standards and uses specialist tools such as in-circuit emulators and logic analysers.</p>
+<p>Drives specialist hardware, typically sensors and actuators, and optimises component code for performance.</p>
+<p>Applies a range of approaches to the verification and testing of real-time components.</p>
+<h3 id="real-timeembedded-systems-development-level-4">Real-time/embedded systems development: Level 4<a class="headerlink" href="#real-timeembedded-systems-development-level-4" title="Permanent link">&para;</a></h3>
+<p>Designs, builds and integrates complex real-time/embedded components and sub-systems.</p>
+<p>Designs physical layouts that reflect the connection between system components to test and optimise performance.</p>
+<p>Builds system prototypes and simulations to aid development and enable debugging, testing and troubleshooting of embedded software.</p>
+<p>Applies a range of approaches to the validation, verification and testing of real-time components and sub-systems. Is fully familiar with a range of specialist tools.</p>
+<h3 id="real-timeembedded-systems-development-level-5">Real-time/embedded systems development: Level 5<a class="headerlink" href="#real-timeembedded-systems-development-level-5" title="Permanent link">&para;</a></h3>
+<p>Designs and develops real-time/embedded architectures and systems to meet agreed system requirements.</p>
+<p>Plans and manages the development of complex real-time/embedded systems and selects the approaches and techniques to be used.</p>
+<p>Analyses design options and trade-offs between hardware and software, makes recommendations and assesses and manages associated risks. Ensures that effective validation, verification and testing is undertaken throughout development.</p>
+<p>Oversees the integration of multiple sub-systems into the overall system.</p>
+<h3 id="real-timeembedded-systems-development-level-6">Real-time/embedded systems development: Level 6<a class="headerlink" href="#real-timeembedded-systems-development-level-6" title="Permanent link">&para;</a></h3>
+<p>Provides overall direction and leadership in the development of real-time/embedded systems.</p>
+<p>Develops organisational policies, standards and guidelines for real-time/embedded systems architectures and designs.</p>
+<p>Plans and leads strategic, large and complex real-time/embedded system developments. Identifies opportunities to exploit new technologies and improve existing technologies and practices.</p>
+<p>Drives adherence to technical strategies, systems architectures and the implementation of risk-based verification, validation and testing. Develops effective implementation and procurement strategies.</p>
+<h2 id="hardware-design">Hardware design<a class="headerlink" href="#hardware-design" title="Permanent link">&para;</a></h2>
+<p>Specifying a hardware design model for a defined system architecture.</p>
+<h3 id="guidance-notes_5">Guidance notes<a class="headerlink" href="#guidance-notes_5" title="Permanent link">&para;</a></h3>
+<p>Examples of computing and communications equipment include — but are not limited to —  semiconductor processors, high performance computing (HPC) architectures and digital signals processor (DSP) and graphics processor chips.</p>
+<p>Activities may include — but are not limited to:</p>
+<ul>
+<li>defining how hardware components fit into the system and integrate with software if required</li>
+<li>selecting, designing, specifying, integrating and prototyping of hardware components</li>
+<li>adhering to industry standards including compatibility, safety, security, reliability and sustainability</li>
+</ul>
+<p>This is typically related to the integration with, or connection to, an IT infrastructure or network.</p>
+<h3 id="hardware-design-level-3">Hardware design: Level 3<a class="headerlink" href="#hardware-design-level-3" title="Permanent link">&para;</a></h3>
+<p>Follows selected standard approaches and design patterns to design simple hardware components.</p>
+<p>Seeks guidance when deviating from established design patterns. Takes account of target environment, performance, security, safety, reliability and sustainability requirements.</p>
+<p>Translates logical designs into physical designs. Tests the performance of prototypes and production output against specification.</p>
+<p>Submits hardware designs for approval. Documents all work using required standards, methods and tools.</p>
+<h3 id="hardware-design-level-4">Hardware design: Level 4<a class="headerlink" href="#hardware-design-level-4" title="Permanent link">&para;</a></h3>
+<p>Designs hardware components, taking account of target environment, performance, security, safety, reliability and sustainability requirements.</p>
+<p>Translates logical designs into physical designs and delivers technical prototypes of proposed components for approval and production.</p>
+<p>Designs the tests to measure the performance of prototypes and production output against specification and inform iterative development.</p>
+<h3 id="hardware-design-level-5">Hardware design: Level 5<a class="headerlink" href="#hardware-design-level-5" title="Permanent link">&para;</a></h3>
+<p>Specifies and designs complex hardware components/systems.</p>
+<p>Selects appropriate design standards, methods and tools, consistent with agreed enterprise policies and ensures they are applied effectively.</p>
+<p>Undertakes impact analysis on major design options and assesses and manages associated risks. Ensures that hardware designs balance functional, quality, safety, security, systems management, reliability and sustainability requirements.</p>
+<p>Reviews others' designs to ensure selection of appropriate technology, efficient use of resources, and effective integration of multiple systems and technology. Contributes to policy for selection of components.</p>
+<h3 id="hardware-design-level-6">Hardware design: Level 6<a class="headerlink" href="#hardware-design-level-6" title="Permanent link">&para;</a></h3>
+<p>Provides overall direction and leadership in the hardware design practice within an enterprise.</p>
+<p>Influences industry-based models for the development of new technology and components.</p>
+<p>Develops effective procurement strategies, consistent with business needs.</p>
+<p>Drives adoption and ensures adherence to organisational policies, strategies and standards for hardware design.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../overrides/extra.js"></script>
+      
+    
+  </body>
+</html>
