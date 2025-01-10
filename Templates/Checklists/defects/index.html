@@ -1,0 +1,920 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Templates">
+      
+      
+        <meta name="author" content="Mark Bacon">
+      
+      
+        <link rel="canonical" href="https://example.com/Checklists/defects/">
+      
+      
+        <link rel="prev" href="../debugging/">
+      
+      
+        <link rel="next" href="../designChecklist/">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Defects - Templated</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#defect-creation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Templated" class="md-header__button md-logo" aria-label="Templated" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Templated
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Defects
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Templated" class="md-nav__button md-logo" aria-label="Templated" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Templated
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checklists
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Checklists
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Checklists
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectureChecklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture Checklist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checklists
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codeReview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Code Review Checklist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Defects
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Defects
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defect-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defect Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defect Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-defect-report-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full defect report example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-understanding-between-bug-severity-and-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Understanding Between Bug Severity and Priority
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Understanding Between Bug Severity and Priority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Severity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-severity-vs-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Severity vs Priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defect-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defect Resolution
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../designChecklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Checklist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Definition of Done
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Definition of Ready
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defect-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defect Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Defect Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-defect-report-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full defect report example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-understanding-between-bug-severity-and-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Understanding Between Bug Severity and Priority
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Understanding Between Bug Severity and Priority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Severity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-severity-vs-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Severity vs Priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defect-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defect Resolution
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Defects</h1>
+
+<h2 id="defect-creation">Defect Creation<a class="headerlink" href="#defect-creation" title="Permanent link">&para;</a></h2>
+<p>DC-1 Define the defect</p>
+<blockquote>
+<p>State the platform and version</p>
+<p>Log in and examine data (client, patient, program selected)</p>
+<p>List any nonstandard configuration settings with values</p>
+<p>State the workflow direction through the application</p>
+</blockquote>
+<p>DC-2 Research to narrow down the root cause and get beyond the defect
+symptom</p>
+<blockquote>
+<p>Retest until you have the exact steps in the correct order to
+reproduce the defect</p>
+<p>Define the who, what, where, when, and how you found the defect</p>
+<p>Execute database queries</p>
+<p>Scan error logs</p>
+<p>If the defect is intermittent, say so</p>
+</blockquote>
+<p>DC-3 Add support documentation</p>
+<blockquote>
+<p>Screenshots</p>
+<p>Video</p>
+<p>Step recording files</p>
+<p>Error log data</p>
+<p>Database query results</p>
+</blockquote>
+<p>DC- 4Format all text for readability and easy understanding</p>
+<blockquote>
+<p>Stick to a known and familiar format when possible</p>
+<p>List using bulleted or numbered lists</p>
+<p>Keep textual descriptions succinct and direct</p>
+<p>Facts only; no opinion, no suggestions, no accusations, no blame</p>
+</blockquote>
+<h3 id="full-defect-report-example">Full defect report example<a class="headerlink" href="#full-defect-report-example" title="Permanent link">&para;</a></h3>
+<p>The following is a full-text example of a defect report:</p>
+<blockquote>
+<p><strong>Summary</strong></p>
+</blockquote>
+<p>Allergy button not highlighted in red and user able to enter medication.</p>
+<blockquote>
+<p><strong>Description</strong></p>
+</blockquote>
+<p>Allergy button fails to highlight in red when an allergy is saved on the
+patient record. Additionally, allergy entry is configured to disallow
+medication entry of the interacting medication. User is able to enter
+and save the medication that to which the patient is allergic.</p>
+<blockquote>
+<p><strong>Build/Platform</strong></p>
+</blockquote>
+<p>Windows 10/IE 11.5.1 / OS X Yosemite/Safari 10.0.3</p>
+<blockquote>
+<p><strong>Steps to reproduce</strong></p>
+</blockquote>
+<ol>
+<li>
+<p>Setup: Set the allergy configuration to ALWAYS BLOCK and save.</p>
+</li>
+<li>
+<p>Log in as a MD user with full access.</p>
+</li>
+<li>
+<p>Select a patient with an existing, saved allergy to penicillin.</p>
+</li>
+<li>
+<p>View the Allergy alert button in the upper right corner.</p>
+</li>
+<li>
+<p>Enter a medication order for penicillin, q4h for 30 days. Save.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Actual results</strong></p>
+</blockquote>
+<p>The allergy button doesn\'t refresh and turn red to alert users to the
+presence of an allergy, and it allows the user to add the medication
+even though the allergy is on the patient record.</p>
+<blockquote>
+<p><strong>Expected results</strong></p>
+</blockquote>
+<p>The allergy button automatically refreshes anytime a new allergy is
+entered and saved. The button turns red to indicate an allergy exists
+for the patient. The MD user is blocked from saving a medication order
+on the patient record when the allergy is present. The configuration
+setting of ALWAYS BLOCK allows the medication order to be blocked
+regardless of the severity of the allergy.</p>
+<blockquote>
+<p><strong>Evidence and supporting documentation</strong></p>
+</blockquote>
+<p>See the red arrow in the sample screenshot below. The allergy button
+should be displaying where the red rectangle is drawn.</p>
+<p><em>NOTE: Configuration set to block medication entry when any related
+allergy exists on the patient record regardless of severity value. User
+is an MD with full access. Database table displays the correct allergy
+value on the patient. No errors generated in the error log.</em> Defect
+Severity and Priority</p>
+<h3 id="severity"><strong>Severity</strong><a class="headerlink" href="#severity" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><em>A blocking bug affects the inoperability of a system, and as a
+result, proceed work with the application under test, or its essential
+functions become Functioning of a scheme can only be ensured by a
+solution of the problem</em>.</p>
+<p><em>A critical error can be caused by malfunctioning key business logic,
+a security hole, an issue that resulted in a temporary disability of
+server or causing a part of the system to fail, without the ability to
+fix the bug applying input points. The solution of the problem is
+necessary for continuous operation of the essential functions of the
+system under test</em>.</p>
+<p><em>A major defect happens when the piece of the business rationale is
+not working accurately. The bug is not critical unless there is a
+chance to proceed with the capacity being tested utilizing other input
+data.</em></p>
+<p><em>Such bug does not aggravate the rationale of tested part of the
+application. Usually, it is a prominent issue of the UI.</em> <strong>S5
+Trivial</strong>.</p>
+<p>It is an insignificant mistake that does not concern the business
+rationale of the application is an inadequately reproducible problem
+scarcely noticeable through the interface. This defect of third-party
+libraries or services does not have any effect on the quality of the
+product.</p>
+</blockquote>
+<p>Priority</p>
+<blockquote>
+<p><em><strong>P1 High</strong>.</em></p>
+<p><em>The error has to be fixed the soonest way since its availability is
+essential for proper operability.</em></p>
+<p><em><strong>P2 Medium</strong>.</em></p>
+<p><em>Elimination of the error is required, though its availability is not
+critical, but needs a binding elimination.</em></p>
+<p><em><strong>P3 Low</strong>.</em></p>
+<p><em>The presence of a bug is not critical and does not require an urgent
+solution</em>.</p>
+</blockquote>
+<h3 id="basic-understanding-between-bug-severity-and-priority"><strong>Basic Understanding Between Bug Severity and Priority</strong><a class="headerlink" href="#basic-understanding-between-bug-severity-and-priority" title="Permanent link">&para;</a></h3>
+<h4 id="1-severity">1. Severity<a class="headerlink" href="#1-severity" title="Permanent link">&para;</a></h4>
+<p>Severity is how austere a bug is! The severity of a bug is derived based
+on the effect of that bug on the system. It indicates the level of
+threat that a bug can affect the system. Severity is divided into
+levels, such as-</p>
+<p><img alt="" src="media/image2.png" /></p>
+<p>Realizing the Severity of a bug is critical from risk assessment and
+management point of view.</p>
+<h4 id="2-priority">2. Priority<a class="headerlink" href="#2-priority" title="Permanent link">&para;</a></h4>
+<p>Priority is how quickly a bug should be fixed and eradicated from the
+website. Bug priority indicates the sense of urgency for dealing with a
+bug on our website.</p>
+<p><img alt="" src="media/image3.png" /></p>
+<p>Buggy software or a website may severely infect the roster, which is a
+result, can lead to a re-evaluation of risk and priorities, which turn
+out to be more time, and resource consuming. This is why Shift-left
+testing is trending in order to evaluate the risk and bugs by testing a
+website as early as possible. In <a href="https://www.lambdatest.com/blog/how-shift-left-testing-can-help-your-product-quality/">shift-left
+testing</a>,
+you implement website testing right from the requirement gathering
+phase. That being said, prioritizing a bug in the right manner goes a
+long way in planning your SDLC(Software Development Lifecycle).</p>
+<h3 id="bug-severity-vs-priority"><strong>Bug Severity vs Priority</strong><a class="headerlink" href="#bug-severity-vs-priority" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="media/image4.png" /></p>
+<blockquote>
+<p>Bug Severity is the degree of impact that a defect has on the system;
+whereas, Bug Priority is the order of severity which has impacted the
+system.</p>
+<p>Severity is related to standards and functionality of the system;
+whereas, Priority is related to scheduling.</p>
+<p>Depending upon the impact of the bug, Bug Severity examines whether
+the impact is serious or not. On the other hand, Bug Priority examines
+whether the bug should be resolved soon or can be delayed.</p>
+<p>Bug Severity is operated by functionality. On the other hand, bug
+priority is operated by business value.</p>
+<p>In the case of bug severity, the level of severity is less likely to
+change. However, bug priority may differ.</p>
+<p>Bug severity is assessed from a technical perspective of the
+web-application workflow. On the other hand, bug priority is assessed
+from a user-experience perspective on web-application usage.</p>
+</blockquote>
+<h2 id="defect-resolution">Defect Resolution<a class="headerlink" href="#defect-resolution" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DR-1 Ensure you have understanding in the area you are fixing</li>
+<li>DR-2 Clarify if the defect is a:</li>
+<li>Functional defect</li>
+<li>Integration related defect</li>
+<li>Architectural defect</li>
+<li>Requirement related defect</li>
+<li>DR-3 Detail what is wrong with the current implementation</li>
+<li>DR-4 Explain what you will change to resolve the defect</li>
+<li>DR-5 Summarise what tests you have done to ensure the defect is resolved</li>
+<li>DR-6 Ensure linkage between the code commits and the defect</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../overrides/extra.js"></script>
+      
+    
+  </body>
+</html>
