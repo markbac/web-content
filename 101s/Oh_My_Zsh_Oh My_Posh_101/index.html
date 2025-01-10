@@ -1,0 +1,953 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="101s">
+      
+      
+        <meta name="author" content="Mark Bacon">
+      
+      
+        <link rel="canonical" href="https://tarf.co.uk/Oh_My_Zsh_Oh%20My_Posh_101/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k - 101s</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../overrides/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="101s" class="md-header__button md-logo" aria-label="101s" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            101s
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="101s" class="md-nav__button md-logo" aria-label="101s" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    101s
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oh-my-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Oh-My-Zsh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Oh-My-Zsh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-oh-my-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Oh-My-Zsh?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powerlevel10k-theme-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Powerlevel10k Theme Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aliases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oh-my-posh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Oh-My-Posh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Oh-My-Posh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-oh-my-posh" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Oh-My-Posh?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powerlevel10k-theme-setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Powerlevel10k Theme Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-oh-my-zsh-vs-oh-my-posh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison: Oh-My-Zsh vs Oh-My-Posh
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web Links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oh-my-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Oh-My-Zsh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Oh-My-Zsh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-oh-my-zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Oh-My-Zsh?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powerlevel10k-theme-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Powerlevel10k Theme Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aliases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oh-my-posh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Oh-My-Posh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Oh-My-Posh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-oh-my-posh" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Oh-My-Posh?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powerlevel10k-theme-setup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Powerlevel10k Theme Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-oh-my-zsh-vs-oh-my-posh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison: Oh-My-Zsh vs Oh-My-Posh
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web Links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k">101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k<a class="headerlink" href="#101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The terminal prompt is more than a simple interface to your operating system. Tools like <strong>Oh-My-Zsh</strong> and <strong>Oh-My-Posh</strong> with themes like <strong>Powerlevel10k</strong> transform the terminal into a powerful productivity hub with features such as:</p>
+<ul>
+<li>Enhanced prompt customization.</li>
+<li>Git integration for faster version control.</li>
+<li>Aliases for commonly used commands to save time.</li>
+<li>Color-coded feedback, advanced theming, and rich visual cues.</li>
+<li>Plugins that extend functionality in meaningful ways.</li>
+</ul>
+<p>This guide covers setting up and using these tools on <strong>Windows</strong> and <strong>Linux</strong>, showcasing their features, examples of prompts, tight Git integration, and how to maximize their potential for productivity and aesthetics.</p>
+<hr />
+<h2 id="oh-my-zsh">Oh-My-Zsh<a class="headerlink" href="#oh-my-zsh" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-oh-my-zsh">What is Oh-My-Zsh?<a class="headerlink" href="#what-is-oh-my-zsh" title="Permanent link">&para;</a></h3>
+<p><strong>Oh-My-Zsh</strong> is a robust framework for managing Zsh (Z shell) configuration. It simplifies terminal use by providing custom themes, plugins, and a rich library of helpful aliases. With its modular and community-driven approach, users can quickly enhance their terminal environment.</p>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Linux/MacOS</strong>
+   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Windows</strong> (via WSL): Install <strong>Zsh</strong> and follow the Linux steps.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zsh
+</code></pre></div>
+<p>Then set Zsh as the default shell:
+   <div class="highlight"><pre><span></span><code>chsh<span class="w"> </span>-s<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>zsh<span class="k">)</span>
+</code></pre></div></p>
+<h3 id="powerlevel10k-theme-setup">Powerlevel10k Theme Setup<a class="headerlink" href="#powerlevel10k-theme-setup" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install the theme:
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>https://github.com/romkatv/powerlevel10k.git<span class="w"> </span><span class="nv">$ZSH_CUSTOM</span>/themes/powerlevel10k
+</code></pre></div></li>
+<li>Configure <strong>~/.zshrc</strong> to use Powerlevel10k:
+   <div class="highlight"><pre><span></span><code><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;powerlevel10k/powerlevel10k&quot;</span>
+</code></pre></div></li>
+<li>Apply changes:
+   <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/.zshrc
+</code></pre></div></li>
+<li>Configure the theme interactively:
+   <div class="highlight"><pre><span></span><code>p10k<span class="w"> </span>configure
+</code></pre></div>
+   The configuration wizard allows you to choose visual styles, powerline separators, and decide what system information is displayed.</li>
+</ol>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<h4 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h4>
+<p>Oh-My-Zsh comes with a rich set of predefined aliases to enhance productivity. These shortcuts minimize typing and streamline common workflows:</p>
+<ul>
+<li><strong>Git</strong>:</li>
+<li><code>ga</code>: <code>git add</code></li>
+<li><code>gc</code>: <code>git commit</code></li>
+<li><code>gp</code>: <code>git push</code></li>
+<li>
+<p><code>gl</code>: <code>git pull</code></p>
+</li>
+<li>
+<p><strong>Directory Navigation</strong>:</p>
+</li>
+<li><code>..</code>: Navigate up one directory.</li>
+<li><code>...</code>: Navigate up two directories.</li>
+<li><code>~</code>: Shortcut to home directory.</li>
+<li>
+<p><code>cd -</code>: Jump back to the previous directory.</p>
+</li>
+<li>
+<p><strong>System Commands</strong>:</p>
+</li>
+<li><code>update</code>: Update all packages with a single command.</li>
+<li><code>z</code>: Quickly jump to frequently used directories based on your usage history.</li>
+</ul>
+<h4 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h4>
+<p>Plugins extend Oh-My-Zsh's functionality. You can easily enable and manage plugins to add specific features. Some popular options include:</p>
+<ul>
+<li><strong>git</strong>: Adds advanced Git shortcuts and displays repository status in the prompt.</li>
+<li><strong>zsh-autosuggestions</strong>: Provides command suggestions based on your history as you type.</li>
+<li><strong>zsh-syntax-highlighting</strong>: Highlights command syntax in real-time, making errors easier to spot.</li>
+<li><strong>history-substring-search</strong>: Allows substring searching in your command history.</li>
+</ul>
+<p>To enable plugins, update the <code>plugins</code> section in <strong>~/.zshrc</strong>:
+<div class="highlight"><pre><span></span><code><span class="nv">plugins</span><span class="o">=(</span>git<span class="w"> </span>zsh-autosuggestions<span class="w"> </span>zsh-syntax-highlighting<span class="w"> </span>history-substring-search<span class="o">)</span>
+</code></pre></div></p>
+<h4 id="prompt-example">Prompt Example<a class="headerlink" href="#prompt-example" title="Permanent link">&para;</a></h4>
+<p>With Powerlevel10k, a typical Zsh prompt might include:
+- <strong>User and host information</strong>: Useful for remote sessions.
+- <strong>Current working directory</strong>: Always know where you are.
+- <strong>Git branch and status</strong>: See repository state at a glance.
+- <strong>Command execution time</strong>: Track performance of long-running tasks.
+- <strong>Error status</strong>: Visualize errors from previous commands immediately.</p>
+<hr />
+<h2 id="oh-my-posh">Oh-My-Posh<a class="headerlink" href="#oh-my-posh" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-oh-my-posh">What is Oh-My-Posh?<a class="headerlink" href="#what-is-oh-my-posh" title="Permanent link">&para;</a></h3>
+<p><strong>Oh-My-Posh</strong> is a cross-platform prompt theme engine that brings the customization power of Zsh themes to <strong>PowerShell</strong>, <strong>Bash</strong>, <strong>Fish</strong>, and more. It offers beautiful, highly configurable themes that enhance productivity.</p>
+<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Windows</strong>
+   Install via PowerShell:
+   <div class="highlight"><pre><span></span><code><span class="nb">Install-Module</span> <span class="n">oh-my-posh</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Linux/MacOS</strong>
+   Install via Homebrew:
+   <div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>oh-my-posh
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="powerlevel10k-theme-setup_1">Powerlevel10k Theme Setup<a class="headerlink" href="#powerlevel10k-theme-setup_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Download the theme:
+   <div class="highlight"><pre><span></span><code><span class="n">oh-my-posh</span> <span class="n">get</span> <span class="n">theme</span> <span class="n">powerlevel10k_rainbow</span>
+</code></pre></div></li>
+<li>Set up your profile to load the theme:
+   <div class="highlight"><pre><span></span><code><span class="n">notepad</span> <span class="nv">$PROFILE</span>
+</code></pre></div>
+   Add the following line:
+   <div class="highlight"><pre><span></span><code><span class="n">oh-my-posh</span> <span class="n">init</span> <span class="n">pwsh</span> <span class="p">-</span><span class="n">-config</span> <span class="p">&lt;</span><span class="n">path-to-theme</span><span class="p">.</span><span class="n">json</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
+</code></pre></div></li>
+<li>Reload the profile:
+   <div class="highlight"><pre><span></span><code><span class="p">.</span> <span class="nv">$PROFILE</span>
+</code></pre></div></li>
+</ol>
+<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">&para;</a></h3>
+<h4 id="git-integration">Git Integration<a class="headerlink" href="#git-integration" title="Permanent link">&para;</a></h4>
+<p>Oh-My-Posh provides rich Git integration out of the box. It displays:
+- The <strong>current branch</strong> and its status.
+- <strong>Untracked</strong> and <strong>staged changes</strong>, shown with clear icons.
+- Push and pull indicators, ensuring you’re always aware of your repository’s state.</p>
+<h4 id="prompt-example_1">Prompt Example<a class="headerlink" href="#prompt-example_1" title="Permanent link">&para;</a></h4>
+<p>A typical Powerlevel10k-powered Oh-My-Posh prompt might display:
+- <strong>User and host</strong>: To identify the session context.
+- <strong>Working directory</strong>: Helps you navigate complex folder structures.
+- <strong>Git repository info</strong>: Visualize branch, commits, and status.
+- <strong>Kubernetes context</strong>: Manage Kubernetes clusters effortlessly.
+- <strong>Command timing</strong>: Understand resource consumption and performance bottlenecks.</p>
+<hr />
+<h2 id="comparison-oh-my-zsh-vs-oh-my-posh">Comparison: Oh-My-Zsh vs Oh-My-Posh<a class="headerlink" href="#comparison-oh-my-zsh-vs-oh-my-posh" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Oh-My-Zsh</th>
+<th>Oh-My-Posh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shells Supported</td>
+<td>Zsh</td>
+<td>PowerShell, Bash, Zsh, Fish</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>Linux/MacOS</td>
+<td>Cross-platform</td>
+</tr>
+<tr>
+<td>Git Integration</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Plugin System</td>
+<td>Extensive</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>Themes, plugins, aliases</td>
+<td>Themes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="web-links">Web Links<a class="headerlink" href="#web-links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://ohmyz.sh/">Oh-My-Zsh Official Website</a></li>
+<li><a href="https://github.com/romkatv/powerlevel10k">Powerlevel10k GitHub</a></li>
+<li><a href="https://ohmyposh.dev/">Oh-My-Posh Official Website</a></li>
+<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">Zsh Syntax Highlighting Plugin</a></li>
+<li><a href="https://github.com/zsh-users/zsh-autosuggestions">Zsh Autosuggestions Plugin</a></li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Both Oh-My-Zsh and Oh-My-Posh significantly enhance terminal productivity and aesthetics, making them essential tools for developers and system administrators. <strong>Oh-My-Zsh</strong> is perfect for Unix-like environments, offering deep customization and extensive plugin support. Meanwhile, <strong>Oh-My-Posh</strong> brings similar benefits to a wider range of shells and operating systems. With features like Git integration, intuitive aliases, and fully customizable prompts, these tools streamline workflows, enhance visual clarity, and make terminal work more engaging.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../overrides/extra.js"></script>
+      
+    
+  </body>
+</html>
