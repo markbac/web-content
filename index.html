@@ -17,21 +17,60 @@
             background-color: #4CAF50;
             color: white;
             text-align: center;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
+            position: relative;
         }
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem;
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
         }
-        .links {
+        /* Burger Menu Styles */
+        .burger-menu {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .burger-menu:focus {
+            outline: none;
+        }
+        .burger-dropdown {
+            display: none;
+            position: absolute;
+            top: 3rem;
+            left: 1rem;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        .burger-dropdown a {
+            display: block;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .burger-dropdown a:last-child {
+            border-bottom: none;
+        }
+        .burger-dropdown a:hover {
+            background-color: #45a049;
+        }
+        .links, .related-sites {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
-        .links a {
+        .links a, .related-sites a {
             text-decoration: none;
             padding: 1rem 2rem;
             background-color: #4CAF50;
@@ -40,16 +79,69 @@
             font-size: 1.2rem;
             transition: background-color 0.3s;
         }
-        .links a:hover {
+        .links a:hover, .related-sites a:hover {
             background-color: #45a049;
+        }
+        .about, .related-sites-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .about h2, .related-sites-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <header>
+        <button class="burger-menu" onclick="toggleMenu()">☰ Menu</button>
+        <div class="burger-dropdown" id="burgerDropdown">
+            <a href="#about">About</a>
+            <a href="https://tarf.co.uk/Glossary">Glossary</a>
+            <a href="https://tarf.co.uk/Reference">Reference</a>
+            <a href="https://tarf.co.uk/Templates">Templates</a>
+            <a href="https://tarf.co.uk/TechRadar">TechRadar</a>
+            <a href="https://tarf.co.uk/ArchHandbook">Architecture Handbook</a>
+            <a href="https://tarf.co.uk/101s">Tech 101s</a>
+            <a href="https://bitsnbacon.co.uk">Bits 'n' Bacon</a>
+            <a href="https://bytesnbacon.co.uk">Bytes 'n' Bacon</a>
+        </div>
         <h1>Welcome to tarf.co.uk</h1>
     </header>
     <main>
+        <section id="about" class="about">
+            <h2>About tarf.co.uk</h2>
+            <p>
+                <strong>tarf.co.uk</strong> is a resource hub designed to share knowledge, tools, and insights across various domains, 
+                including software architecture, technology, and engineering. This site serves as a repository for professionals and 
+                enthusiasts looking for glossaries, reference materials, templates, and guides.
+            </p>
+            <p>
+                The name <strong>"Tarf"</strong> originates from Beta Cancri, the brightest star in the constellation Cancer. 
+                With a strong interest in astronomy and physics, I wanted to tie this passion to the site's identity. 
+                While astronomy is grounded in science and discovery (unlike astrology, which is nonsense), the star Tarf represents 
+                the blend of exploration and knowledge that this site aspires to provide.
+            </p>
+            <p>
+                As the site grows, more resources and tools will be added to support architects, engineers, and technology enthusiasts. 
+                Check back often to see what's new!
+            </p>
+        </section>
         <section class="links">
             <a href="https://tarf.co.uk/Glossary">Glossary</a>
             <a href="https://tarf.co.uk/Reference">Reference</a>
@@ -58,6 +150,34 @@
             <a href="https://tarf.co.uk/ArchHandbook">Architecture Handbook</a>
             <a href="https://tarf.co.uk/101s">Tech 101s</a>
         </section>
+        <section class="related-sites">
+            <a href="https://bitsnbacon.co.uk">Bits 'n' Bacon</a>
+            <a href="https://bytesnbacon.co.uk">Bytes 'n' Bacon</a>
+        </section>
+        <section class="related-sites-info">
+            <h2>Explore My Other Sites</h2>
+            <p>
+                <strong><a href="https://bitsnbacon.co.uk" target="_blank">Bits 'n' Bacon</a></strong>: A family-focused site sharing everyday moments, tips, and stories. 
+                It’s a space where family life meets creativity and connection, offering something for everyone.
+            </p>
+            <p>
+                <strong><a href="https://bytesnbacon.co.uk" target="_blank">Bytes 'n' Bacon</a></strong>: My personal site with a professional touch. 
+                Dive into my CV, blogs on software architecture, technology insights, and personal projects. It's where tech expertise and passion collide.
+            </p>
+        </section>
     </main>
+    <footer>
+        <p>&copy; 2025 tarf.co.uk. All rights reserved. Check out my other sites: 
+            <a href="https://bitsnbacon.co.uk">Bits 'n' Bacon</a> and 
+            <a href="https://bytesnbacon.co.uk">Bytes 'n' Bacon</a>.
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('burgerDropdown');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
