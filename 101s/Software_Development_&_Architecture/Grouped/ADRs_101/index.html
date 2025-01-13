@@ -12,28 +12,28 @@
         <meta name="author" content="Mark Bacon">
       
       
-        <link rel="canonical" href="https://tarf.co.uk/Oh_My_Zsh_Oh%20My_Posh_101/">
+        <link rel="canonical" href="https://tarf.co.uk/Software_Development_%26_Architecture/Grouped/ADRs_101/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../../Software_Development_%26_Architecture/">
       
       
-        <link rel="next" href="../Additional_Topics/Additional_Topics/">
+        <link rel="next" href="../C4_Model_101/">
       
       
-      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="icon" href="../../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
-        <title>101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k - 101s</title>
+        <title>ADRs 101: An Introduction to Architectural Decision Records - 101s</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="../overrides/extra.css">
+      <link rel="stylesheet" href="../../../overrides/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k" class="md-skip">
+        <a href="#adrs-101-an-introduction-to-architectural-decision-records" class="md-skip">
           Skip to content
         </a>
       
@@ -94,9 +94,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="101s" class="md-header__button md-logo" aria-label="101s" data-md-component="logo">
+    <a href="../../.." title="101s" class="md-header__button md-logo" aria-label="101s" data-md-component="logo">
       
-  <img src="../../images/logo.png" alt="logo">
+  <img src="../../../../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+              ADRs 101: An Introduction to Architectural Decision Records
             
           </span>
         </div>
@@ -188,9 +188,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="101s" class="md-nav__button md-logo" aria-label="101s" data-md-component="logo">
+    <a href="../../.." title="101s" class="md-nav__button md-logo" aria-label="101s" data-md-component="logo">
       
-  <img src="../../images/logo.png" alt="logo">
+  <img src="../../../../images/logo.png" alt="logo">
 
     </a>
     101s
@@ -205,7 +205,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -222,30 +222,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Oh_My_Zsh_Oh%20My_Posh_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -254,221 +234,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oh-my-zsh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Oh-My-Zsh
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Oh-My-Zsh">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-oh-my-zsh" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is Oh-My-Zsh?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aliases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aliases
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#plugins" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plugins
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Oh-My-Posh
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Oh-My-Posh">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is Oh-My-Posh?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#git-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Git Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-oh-my-zsh-vs-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comparison: Oh-My-Zsh vs Oh-My-Posh
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      Web Links
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -515,7 +280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Additional_Topics/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Additional_Topics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -571,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/Design_Patterns_in_Software_Development_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/Design_Patterns_in_Software_Development_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -592,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/Edge_Architectures_for_IoT_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/Edge_Architectures_for_IoT_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -613,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/Event_Storming_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/Event_Storming_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -634,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/RCA_for_Technical_Teams_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/RCA_for_Technical_Teams_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -705,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Cloud_Technologies/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Cloud_Technologies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -761,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/CICD_Pipelines_in_Cloud_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/CICD_Pipelines_in_Cloud_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -782,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Event_Streaming_with_Kafka_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Event_Streaming_with_Kafka_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -803,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Google_Cloud_Platform_%28GCP%29_for_IoT_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Google_Cloud_Platform_%28GCP%29_for_IoT_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -824,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Infrastructure_as_Code_%28IaC%29_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Infrastructure_as_Code_%28IaC%29_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -845,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Serverless_Computing_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Serverless_Computing_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -916,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/IoT_%26_Embedded_Systems/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/IoT_%26_Embedded_Systems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -972,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/ETSI_EN_303_645_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/ETSI_EN_303_645_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -993,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/Embedded_Systems_Design_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/Embedded_Systems_Design_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1014,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/FreeRTOS_Basics_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/FreeRTOS_Basics_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1035,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/IoT_Edge_Computing_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/IoT_Edge_Computing_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1056,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/MQTT_Protocol_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/MQTT_Protocol_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1127,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Programming_%26_Tools/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Programming_%26_Tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1183,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Git_Best_Practices_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Git_Best_Practices_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1204,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/PlantUML_%26_Mermaid_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/PlantUML_%26_Mermaid_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1225,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Python_for_Automation_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Python_for_Automation_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1246,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Rust_for_Systems_Programming_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Rust_for_Systems_Programming_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1267,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Static_Code_Analysis_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Static_Code_Analysis_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1338,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Security_%26_Standards/" class="md-nav__link">
+      <a href="../../../Security_%26_Standards/Security_%26_Standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1394,7 +1159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/ISO_30141_101/" class="md-nav__link">
+      <a href="../../../Security_%26_Standards/Grouped/ISO_30141_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1415,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/OAuth_2.0_%26_OpenID_Connect_101/" class="md-nav__link">
+      <a href="../../../Security_%26_Standards/Grouped/OAuth_2.0_%26_OpenID_Connect_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1436,7 +1201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/OWASP_Top_10_101/" class="md-nav__link">
+      <a href="../../../Security_%26_Standards/Grouped/OWASP_Top_10_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1457,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/Secure_Coding_Practices_101/" class="md-nav__link">
+      <a href="../../../Security_%26_Standards/Grouped/Secure_Coding_Practices_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1478,7 +1243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/Zero_Trust_Architecture_101/" class="md-nav__link">
+      <a href="../../../Security_%26_Standards/Grouped/Zero_Trust_Architecture_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1511,17 +1276,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1535,7 +1302,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Software Development & Architecture
@@ -1549,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Software_Development_%26_Architecture/" class="md-nav__link">
+      <a href="../../Software_Development_%26_Architecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1567,17 +1334,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" checked>
         
           
           <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
@@ -1591,7 +1360,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_2">
             <span class="md-nav__icon md-icon"></span>
             Grouped
@@ -1602,10 +1371,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/ADRs_101/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ADRs 101: An Introduction to Architectural Decision Records
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1614,6 +1403,155 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-adrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Are ADRs?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components-of-an-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components of an ADR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-effective-adrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing Effective ADRs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing Effective ADRs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-adr-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example ADR Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-adrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of ADRs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-adr-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      The ADR Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adrs-in-action-a-user-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADRs in Action: A User Journey
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-adrs-in-your-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing ADRs in Your Organization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing ADRs in Your Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps to Get Started
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Solutions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Reading
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1626,7 +1564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/C4_Model_101/" class="md-nav__link">
+      <a href="../C4_Model_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1647,7 +1585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/Domain-Driven_Design_%28DDD%29_101/" class="md-nav__link">
+      <a href="../Domain-Driven_Design_%28DDD%29_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1668,7 +1606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/Event-Driven_Architecture_101/" class="md-nav__link">
+      <a href="../Event-Driven_Architecture_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1689,7 +1627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/Modular_Monolith_vs_Microservices_101/" class="md-nav__link">
+      <a href="../Modular_Monolith_vs_Microservices_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1760,7 +1698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Team_Practices_%26_Methodologies/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Team_Practices_%26_Methodologies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1816,7 +1754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Agile_Development_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Agile_Development_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1837,7 +1775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Docs_as_Code_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Docs_as_Code_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1858,7 +1796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Lightweight_Architecture_Evaluations_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Lightweight_Architecture_Evaluations_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1879,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/RCA_%28Root_Cause_Analysis%29_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/RCA_%28Root_Cause_Analysis%29_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1900,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Scrum_vs_Kanban_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Scrum_vs_Kanban_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1956,83 +1894,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#what-are-adrs" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
+      What Are ADRs?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#oh-my-zsh" class="md-nav__link">
+  <a href="#key-components-of-an-adr" class="md-nav__link">
     <span class="md-ellipsis">
-      Oh-My-Zsh
+      Key Components of an ADR
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Oh-My-Zsh">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-effective-adrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing Effective ADRs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing Effective ADRs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-is-oh-my-zsh" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
-      What is Oh-My-Zsh?
+      Best Practices
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#example-adr-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aliases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aliases
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#plugins" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plugins
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
+      Example ADR Structure
     </span>
   </a>
   
@@ -2042,72 +1943,57 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-adrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of ADRs
+    </span>
+  </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#oh-my-posh" class="md-nav__link">
+  <a href="#the-adr-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Oh-My-Posh
+      The ADR Workflow
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Oh-My-Posh">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adrs-in-action-a-user-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADRs in Action: A User Journey
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-adrs-in-your-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementing ADRs in Your Organization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing ADRs in Your Organization">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-is-oh-my-posh" class="md-nav__link">
+  <a href="#steps-to-get-started" class="md-nav__link">
     <span class="md-ellipsis">
-      What is Oh-My-Posh?
+      Steps to Get Started
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation_1" class="md-nav__link">
+  <a href="#challenges-and-solutions" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#git-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Git Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
+      Challenges and Solutions
     </span>
   </a>
   
@@ -2115,29 +2001,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-oh-my-zsh-vs-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comparison: Oh-My-Zsh vs Oh-My-Posh
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      Web Links
-    </span>
-  </a>
   
 </li>
       
@@ -2145,6 +2008,15 @@
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Reading
     </span>
   </a>
   
@@ -2165,194 +2037,110 @@
                   
 
 
-<h1 id="101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k">101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k<a class="headerlink" href="#101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The terminal prompt is more than a simple interface to your operating system. Tools like <strong>Oh-My-Zsh</strong> and <strong>Oh-My-Posh</strong> with themes like <strong>Powerlevel10k</strong> transform the terminal into a powerful productivity hub with features such as:</p>
-<ul>
-<li>Enhanced prompt customization.</li>
-<li>Git integration for faster version control.</li>
-<li>Aliases for commonly used commands to save time.</li>
-<li>Color-coded feedback, advanced theming, and rich visual cues.</li>
-<li>Plugins that extend functionality in meaningful ways.</li>
-</ul>
-<p>This guide covers setting up and using these tools on <strong>Windows</strong> and <strong>Linux</strong>, showcasing their features, examples of prompts, tight Git integration, and how to maximize their potential for productivity and aesthetics.</p>
-<hr />
-<h2 id="oh-my-zsh">Oh-My-Zsh<a class="headerlink" href="#oh-my-zsh" title="Permanent link">&para;</a></h2>
-<h3 id="what-is-oh-my-zsh">What is Oh-My-Zsh?<a class="headerlink" href="#what-is-oh-my-zsh" title="Permanent link">&para;</a></h3>
-<p><strong>Oh-My-Zsh</strong> is a robust framework for managing Zsh (Z shell) configuration. It simplifies terminal use by providing custom themes, plugins, and a rich library of helpful aliases. With its modular and community-driven approach, users can quickly enhance their terminal environment.</p>
-<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Linux/MacOS</strong>
-   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Windows</strong> (via WSL): Install <strong>Zsh</strong> and follow the Linux steps.</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zsh
+<h1 id="adrs-101-an-introduction-to-architectural-decision-records">ADRs 101: An Introduction to Architectural Decision Records<a class="headerlink" href="#adrs-101-an-introduction-to-architectural-decision-records" title="Permanent link">&para;</a></h1>
+<p>Architectural Decision Records (ADRs) are a key element in the toolbox of modern software development and architectural practices. They serve as a documented log of crucial decisions made during the lifecycle of a project. This guide aims to provide engineers, architects, and technical leaders with a comprehensive understanding of ADRs, their importance, and best practices for implementation.</p>
+<h2 id="what-are-adrs">What Are ADRs?<a class="headerlink" href="#what-are-adrs" title="Permanent link">&para;</a></h2>
+<p>ADRs are concise documents that capture the context, decision, and consequences of architectural decisions. They ensure that the rationale behind decisions is preserved for future reference, facilitating better understanding and continuity in the development process.</p>
+<div class="highlight"><pre><span></span><code>classDiagram
+    class ADR {
+        +String title
+        +Date date
+        +String status
+        +String context
+        +String decision
+        +String consequences
+    }
 </code></pre></div>
-<p>Then set Zsh as the default shell:
-   <div class="highlight"><pre><span></span><code>chsh<span class="w"> </span>-s<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>zsh<span class="k">)</span>
-</code></pre></div></p>
-<h3 id="powerlevel10k-theme-setup">Powerlevel10k Theme Setup<a class="headerlink" href="#powerlevel10k-theme-setup" title="Permanent link">&para;</a></h3>
+<h2 id="key-components-of-an-adr">Key Components of an ADR<a class="headerlink" href="#key-components-of-an-adr" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Install the theme:
-   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>https://github.com/romkatv/powerlevel10k.git<span class="w"> </span><span class="nv">$ZSH_CUSTOM</span>/themes/powerlevel10k
-</code></pre></div></li>
-<li>Configure <strong>~/.zshrc</strong> to use Powerlevel10k:
-   <div class="highlight"><pre><span></span><code><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;powerlevel10k/powerlevel10k&quot;</span>
-</code></pre></div></li>
-<li>Apply changes:
-   <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/.zshrc
-</code></pre></div></li>
-<li>Configure the theme interactively:
-   <div class="highlight"><pre><span></span><code>p10k<span class="w"> </span>configure
+<li><strong>Title</strong>: A brief and descriptive name of the decision.</li>
+<li><strong>Date</strong>: The date when the decision was made.</li>
+<li><strong>Status</strong>: Current status (e.g., proposed, accepted, deprecated).</li>
+<li><strong>Context</strong>: A description of the problem space and factors influencing the decision.</li>
+<li><strong>Decision</strong>: The decision itself, clearly stated.</li>
+<li><strong>Consequences</strong>: Positive and negative implications of the decision.</li>
+</ol>
+<h2 id="writing-effective-adrs">Writing Effective ADRs<a class="headerlink" href="#writing-effective-adrs" title="Permanent link">&para;</a></h2>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Conciseness</strong>: Keep ADRs brief but comprehensive.</li>
+<li><strong>Clarity</strong>: Use clear language to describe decisions.</li>
+<li><strong>Traceability</strong>: Reference related ADRs or documents to provide a full picture.</li>
+<li><strong>Version Control</strong>: Store ADRs in a version-controlled repository.</li>
+</ul>
+<h3 id="example-adr-structure">Example ADR Structure<a class="headerlink" href="#example-adr-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="gh"># ADR-001: Use PostgreSQL for Database</span>
+
+<span class="gu">## Date</span>
+2023-10-15
+
+<span class="gu">## Status</span>
+Accepted
+
+<span class="gu">## Context</span>
+We need a scalable, reliable, and ACID-compliant database for our application.
+
+<span class="gu">## Decision</span>
+We will use PostgreSQL as our database management system.
+
+<span class="gu">## Consequences</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Positive**</span>: Strong community support, advanced features like JSONB, and robust performance.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Negative**</span>: Requires team training on PostgreSQL specifics.
 </code></pre></div>
-   The configuration wizard allows you to choose visual styles, powerline separators, and decide what system information is displayed.</li>
-</ol>
-<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
-<h4 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h4>
-<p>Oh-My-Zsh comes with a rich set of predefined aliases to enhance productivity. These shortcuts minimize typing and streamline common workflows:</p>
+<h2 id="benefits-of-adrs">Benefits of ADRs<a class="headerlink" href="#benefits-of-adrs" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Git</strong>:</li>
-<li><code>ga</code>: <code>git add</code></li>
-<li><code>gc</code>: <code>git commit</code></li>
-<li><code>gp</code>: <code>git push</code></li>
-<li>
-<p><code>gl</code>: <code>git pull</code></p>
-</li>
-<li>
-<p><strong>Directory Navigation</strong>:</p>
-</li>
-<li><code>..</code>: Navigate up one directory.</li>
-<li><code>...</code>: Navigate up two directories.</li>
-<li><code>~</code>: Shortcut to home directory.</li>
-<li>
-<p><code>cd -</code>: Jump back to the previous directory.</p>
-</li>
-<li>
-<p><strong>System Commands</strong>:</p>
-</li>
-<li><code>update</code>: Update all packages with a single command.</li>
-<li><code>z</code>: Quickly jump to frequently used directories based on your usage history.</li>
+<li><strong>Preservation of Knowledge</strong>: Captures the reasoning behind decisions for future team members.</li>
+<li><strong>Informed Decision-Making</strong>: Facilitates better understanding of past decisions to inform new ones.</li>
+<li><strong>Improved Communication</strong>: Enhances clarity and transparency within teams.</li>
 </ul>
-<h4 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h4>
-<p>Plugins extend Oh-My-Zsh's functionality. You can easily enable and manage plugins to add specific features. Some popular options include:</p>
-<ul>
-<li><strong>git</strong>: Adds advanced Git shortcuts and displays repository status in the prompt.</li>
-<li><strong>zsh-autosuggestions</strong>: Provides command suggestions based on your history as you type.</li>
-<li><strong>zsh-syntax-highlighting</strong>: Highlights command syntax in real-time, making errors easier to spot.</li>
-<li><strong>history-substring-search</strong>: Allows substring searching in your command history.</li>
-</ul>
-<p>To enable plugins, update the <code>plugins</code> section in <strong>~/.zshrc</strong>:
-<div class="highlight"><pre><span></span><code><span class="nv">plugins</span><span class="o">=(</span>git<span class="w"> </span>zsh-autosuggestions<span class="w"> </span>zsh-syntax-highlighting<span class="w"> </span>history-substring-search<span class="o">)</span>
-</code></pre></div></p>
-<h4 id="prompt-example">Prompt Example<a class="headerlink" href="#prompt-example" title="Permanent link">&para;</a></h4>
-<p>With Powerlevel10k, a typical Zsh prompt might include:
-- <strong>User and host information</strong>: Useful for remote sessions.
-- <strong>Current working directory</strong>: Always know where you are.
-- <strong>Git branch and status</strong>: See repository state at a glance.
-- <strong>Command execution time</strong>: Track performance of long-running tasks.
-- <strong>Error status</strong>: Visualize errors from previous commands immediately.</p>
-<hr />
-<h2 id="oh-my-posh">Oh-My-Posh<a class="headerlink" href="#oh-my-posh" title="Permanent link">&para;</a></h2>
-<h3 id="what-is-oh-my-posh">What is Oh-My-Posh?<a class="headerlink" href="#what-is-oh-my-posh" title="Permanent link">&para;</a></h3>
-<p><strong>Oh-My-Posh</strong> is a cross-platform prompt theme engine that brings the customization power of Zsh themes to <strong>PowerShell</strong>, <strong>Bash</strong>, <strong>Fish</strong>, and more. It offers beautiful, highly configurable themes that enhance productivity.</p>
-<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Windows</strong>
-   Install via PowerShell:
-   <div class="highlight"><pre><span></span><code><span class="nb">Install-Module</span> <span class="n">oh-my-posh</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Linux/MacOS</strong>
-   Install via Homebrew:
-   <div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>oh-my-posh
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="powerlevel10k-theme-setup_1">Powerlevel10k Theme Setup<a class="headerlink" href="#powerlevel10k-theme-setup_1" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Download the theme:
-   <div class="highlight"><pre><span></span><code><span class="n">oh-my-posh</span> <span class="n">get</span> <span class="n">theme</span> <span class="n">powerlevel10k_rainbow</span>
-</code></pre></div></li>
-<li>Set up your profile to load the theme:
-   <div class="highlight"><pre><span></span><code><span class="n">notepad</span> <span class="nv">$PROFILE</span>
+<h2 id="the-adr-workflow">The ADR Workflow<a class="headerlink" href="#the-adr-workflow" title="Permanent link">&para;</a></h2>
+<p>A typical ADR workflow involves several steps, from identification of a decision point to documentation and review.</p>
+<div class="highlight"><pre><span></span><code>flowchart TD
+    A[Identify Decision Point] --&gt; B[Research and Analyze]
+    B --&gt; C[Draft ADR]
+    C --&gt; D[Review and Discuss]
+    D --&gt; E[Finalize and Approve]
+    E --&gt; F[Store in Repository]
+    F --&gt; G[Monitor and Update]
 </code></pre></div>
-   Add the following line:
-   <div class="highlight"><pre><span></span><code><span class="n">oh-my-posh</span> <span class="n">init</span> <span class="n">pwsh</span> <span class="p">-</span><span class="n">-config</span> <span class="p">&lt;</span><span class="n">path-to-theme</span><span class="p">.</span><span class="n">json</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
-</code></pre></div></li>
-<li>Reload the profile:
-   <div class="highlight"><pre><span></span><code><span class="p">.</span> <span class="nv">$PROFILE</span>
-</code></pre></div></li>
+<h2 id="adrs-in-action-a-user-journey">ADRs in Action: A User Journey<a class="headerlink" href="#adrs-in-action-a-user-journey" title="Permanent link">&para;</a></h2>
+<p>Understanding how ADRs fit into the software development lifecycle can be visualized through a user journey.</p>
+<div class="highlight"><pre><span></span><code>journey
+    title ADR User Journey
+    section Discovery
+      Developer: 5: Identify Decision Point
+      Architect: 4: Conduct Research
+      Team Lead: 3: Facilitate Discussions
+    section Documentation
+      Architect: 5: Draft ADR
+      Developer: 4: Provide Feedback
+      Team Lead: 5: Approve ADR
+    section Implementation
+      Developer: 5: Implement Decision
+      Architect: 4: Monitor Consequences
+</code></pre></div>
+<h2 id="implementing-adrs-in-your-organization">Implementing ADRs in Your Organization<a class="headerlink" href="#implementing-adrs-in-your-organization" title="Permanent link">&para;</a></h2>
+<h3 id="steps-to-get-started">Steps to Get Started<a class="headerlink" href="#steps-to-get-started" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Educate Your Team</strong>: Conduct workshops to familiarize team members with ADRs.</li>
+<li><strong>Define a Template</strong>: Establish a standard template for consistency.</li>
+<li><strong>Integrate with Tools</strong>: Use version control systems like Git to manage ADRs.</li>
+<li><strong>Foster a Culture of Documentation</strong>: Encourage regular updates and reviews of ADRs.</li>
 </ol>
-<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">&para;</a></h3>
-<h4 id="git-integration">Git Integration<a class="headerlink" href="#git-integration" title="Permanent link">&para;</a></h4>
-<p>Oh-My-Posh provides rich Git integration out of the box. It displays:
-- The <strong>current branch</strong> and its status.
-- <strong>Untracked</strong> and <strong>staged changes</strong>, shown with clear icons.
-- Push and pull indicators, ensuring you’re always aware of your repository’s state.</p>
-<h4 id="prompt-example_1">Prompt Example<a class="headerlink" href="#prompt-example_1" title="Permanent link">&para;</a></h4>
-<p>A typical Powerlevel10k-powered Oh-My-Posh prompt might display:
-- <strong>User and host</strong>: To identify the session context.
-- <strong>Working directory</strong>: Helps you navigate complex folder structures.
-- <strong>Git repository info</strong>: Visualize branch, commits, and status.
-- <strong>Kubernetes context</strong>: Manage Kubernetes clusters effortlessly.
-- <strong>Command timing</strong>: Understand resource consumption and performance bottlenecks.</p>
-<hr />
-<h2 id="comparison-oh-my-zsh-vs-oh-my-posh">Comparison: Oh-My-Zsh vs Oh-My-Posh<a class="headerlink" href="#comparison-oh-my-zsh-vs-oh-my-posh" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Oh-My-Zsh</th>
-<th>Oh-My-Posh</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Shells Supported</td>
-<td>Zsh</td>
-<td>PowerShell, Bash, Zsh, Fish</td>
-</tr>
-<tr>
-<td>Platform</td>
-<td>Linux/MacOS</td>
-<td>Cross-platform</td>
-</tr>
-<tr>
-<td>Git Integration</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Plugin System</td>
-<td>Extensive</td>
-<td>Moderate</td>
-</tr>
-<tr>
-<td>Customization</td>
-<td>Themes, plugins, aliases</td>
-<td>Themes</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="web-links">Web Links<a class="headerlink" href="#web-links" title="Permanent link">&para;</a></h2>
+<h3 id="challenges-and-solutions">Challenges and Solutions<a class="headerlink" href="#challenges-and-solutions" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://ohmyz.sh/">Oh-My-Zsh Official Website</a></li>
-<li><a href="https://github.com/romkatv/powerlevel10k">Powerlevel10k GitHub</a></li>
-<li><a href="https://ohmyposh.dev/">Oh-My-Posh Official Website</a></li>
-<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">Zsh Syntax Highlighting Plugin</a></li>
-<li><a href="https://github.com/zsh-users/zsh-autosuggestions">Zsh Autosuggestions Plugin</a></li>
+<li><strong>Resistance to Change</strong>: Address by demonstrating the long-term benefits of ADRs.</li>
+<li><strong>Overhead Concerns</strong>: Emphasize the efficiency and future cost savings ADRs provide.</li>
 </ul>
-<hr />
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>Both Oh-My-Zsh and Oh-My-Posh significantly enhance terminal productivity and aesthetics, making them essential tools for developers and system administrators. <strong>Oh-My-Zsh</strong> is perfect for Unix-like environments, offering deep customization and extensive plugin support. Meanwhile, <strong>Oh-My-Posh</strong> brings similar benefits to a wider range of shells and operating systems. With features like Git integration, intuitive aliases, and fully customizable prompts, these tools streamline workflows, enhance visual clarity, and make terminal work more engaging.</p>
+<p>Architectural Decision Records are a powerful tool that, when used effectively, can greatly enhance the architectural robustness and operational efficiency of software projects. By documenting decisions, understanding their impacts, and learning from past experiences, organizations can build a strong foundation for future success.</p>
+<h2 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">Documenting Architecture Decisions</a></li>
+<li><a href="https://adr.github.io/madr/">The Architecture Decision Record</a></li>
+<li><a href="https://martinfowler.com/articles/architecture-decisions.html">Y-Statements: Capturing Architectural Decisions</a></li>
+</ul>
+<p>ADRs are not just about preserving decisions; they are about creating a culture of transparency, accountability, and continuous improvement. As you integrate ADRs into your processes, remember that the goal is to align technical decisions with business objectives, ensuring both current and future success.</p>
 
 
 
@@ -2399,12 +2187,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
-        <script src="../overrides/extra.js"></script>
+        <script src="../../../overrides/extra.js"></script>
       
     
   </body>

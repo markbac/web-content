@@ -1,0 +1,1071 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="101s" name="description"/>
+<meta content="Mark Bacon" name="author"/>
+<link href="https://tarf.co.uk/Programming_%26_Tools/Grouped/PlantUML_%26_Mermaid_101/" rel="canonical"/>
+<link href="../Git_Best_Practices_101/" rel="prev"/>
+<link href="../Python_for_Automation_101/" rel="next"/>
+<link href="../../../../images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.49" name="generator"/>
+<title>PlantUML &amp; Mermaid 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders - 101s</title>
+<link href="../../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../overrides/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="pink" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#plantuml-mermaid-101-a-comprehensive-guide-for-engineers-architects-and-technical-leaders">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="101s" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="101s">
+<img alt="logo" src="../../../../images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            101s
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              PlantUML &amp; Mermaid 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="101s" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="101s">
+<img alt="logo" src="../../../../images/logo.png"/>
+</a>
+    101s
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    Additional_Topics
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Oh_My_Zsh_Oh%20My_Posh_101/">
+<span class="md-ellipsis">
+    101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Additional Topics
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Additional Topics
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Additional_Topics/Additional_Topics/">
+<span class="md-ellipsis">
+    Additional Topics 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Additional_Topics/Grouped/Design_Patterns_in_Software_Development_101/">
+<span class="md-ellipsis">
+    Design Patterns in Software Development 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Additional_Topics/Grouped/Edge_Architectures_for_IoT_101/">
+<span class="md-ellipsis">
+    Edge Architectures for IoT 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Additional_Topics/Grouped/Event_Storming_101/">
+<span class="md-ellipsis">
+    Event Storming 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Additional_Topics/Grouped/RCA_for_Technical_Teams_101/">
+<span class="md-ellipsis">
+    RCA for Technical Teams 101
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Cloud Technologies
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Cloud Technologies
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Cloud_Technologies/Cloud_Technologies/">
+<span class="md-ellipsis">
+    Cloud Technologies 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Cloud_Technologies/Grouped/CICD_Pipelines_in_Cloud_101/">
+<span class="md-ellipsis">
+    CI/CD Pipelines in Cloud 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Cloud_Technologies/Grouped/Event_Streaming_with_Kafka_101/">
+<span class="md-ellipsis">
+    Event Streaming with Kafka 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Cloud_Technologies/Grouped/Google_Cloud_Platform_%28GCP%29_for_IoT_101/">
+<span class="md-ellipsis">
+    Google Cloud Platform (GCP) for IoT 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Cloud_Technologies/Grouped/Infrastructure_as_Code_%28IaC%29_101/">
+<span class="md-ellipsis">
+    Infrastructure as Code (IaC) 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Cloud_Technologies/Grouped/Serverless_Computing_101/">
+<span class="md-ellipsis">
+    Serverless Computing 101
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    IoT &amp; Embedded Systems
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            IoT &amp; Embedded Systems
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../IoT_%26_Embedded_Systems/IoT_%26_Embedded_Systems/">
+<span class="md-ellipsis">
+    IoT &amp; Embedded Systems 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../IoT_%26_Embedded_Systems/Grouped/ETSI_EN_303_645_101/">
+<span class="md-ellipsis">
+    ETSI EN 303 645 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../IoT_%26_Embedded_Systems/Grouped/Embedded_Systems_Design_101/">
+<span class="md-ellipsis">
+    Embedded Systems Design 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../IoT_%26_Embedded_Systems/Grouped/FreeRTOS_Basics_101/">
+<span class="md-ellipsis">
+    FreeRTOS Basics 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../IoT_%26_Embedded_Systems/Grouped/IoT_Edge_Computing_101/">
+<span class="md-ellipsis">
+    IoT Edge Computing 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../IoT_%26_Embedded_Systems/Grouped/MQTT_Protocol_101/">
+<span class="md-ellipsis">
+    MQTT Protocol 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    Programming &amp; Tools
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            Programming &amp; Tools
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Programming_%26_Tools/">
+<span class="md-ellipsis">
+    Programming &amp; Tools 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_6_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_6_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Git_Best_Practices_101/">
+<span class="md-ellipsis">
+    Git Best Practices 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    PlantUML &amp; Mermaid 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    PlantUML &amp; Mermaid 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-plantuml-and-mermaid">
+<span class="md-ellipsis">
+      Understanding PlantUML and Mermaid
+    </span>
+</a>
+<nav aria-label="Understanding PlantUML and Mermaid" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#plantuml-overview">
+<span class="md-ellipsis">
+      PlantUML Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mermaid-overview">
+<span class="md-ellipsis">
+      Mermaid Overview
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-areas-of-mermaid">
+<span class="md-ellipsis">
+      Key Areas of Mermaid
+    </span>
+</a>
+<nav aria-label="Key Areas of Mermaid" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-flowchart">
+<span class="md-ellipsis">
+      1. Flowchart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-sequence-diagram">
+<span class="md-ellipsis">
+      2. Sequence Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-class-diagram">
+<span class="md-ellipsis">
+      3. Class Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-state-diagram">
+<span class="md-ellipsis">
+      4. State Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-entity-relationship-diagram-erd">
+<span class="md-ellipsis">
+      5. Entity Relationship Diagram (ERD)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-user-journey-diagram">
+<span class="md-ellipsis">
+      6. User Journey Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-gantt-chart">
+<span class="md-ellipsis">
+      7. Gantt Chart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-pie-chart">
+<span class="md-ellipsis">
+      8. Pie Chart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-quadrant-chart">
+<span class="md-ellipsis">
+      9. Quadrant Chart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-mindmap-diagram">
+<span class="md-ellipsis">
+      10. Mindmap Diagram
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#practical-insights-and-best-practices">
+<span class="md-ellipsis">
+      Practical Insights and Best Practices
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conclusion">
+<span class="md-ellipsis">
+      Conclusion
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Python_for_Automation_101/">
+<span class="md-ellipsis">
+    Python for Automation 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Rust_for_Systems_Programming_101/">
+<span class="md-ellipsis">
+    Rust for Systems Programming 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Static_Code_Analysis_101/">
+<span class="md-ellipsis">
+    Static Code Analysis 101
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    Security &amp; Standards
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            Security &amp; Standards
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Security_%26_Standards/Security_%26_Standards/">
+<span class="md-ellipsis">
+    Security &amp; Standards 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Security_%26_Standards/Grouped/ISO_30141_101/">
+<span class="md-ellipsis">
+    ISO 30141 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Security_%26_Standards/Grouped/OAuth_2.0_%26_OpenID_Connect_101/">
+<span class="md-ellipsis">
+    OAuth 2.0 &amp; OpenID Connect 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Security_%26_Standards/Grouped/OWASP_Top_10_101/">
+<span class="md-ellipsis">
+    OWASP Top 10 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Security_%26_Standards/Grouped/Secure_Coding_Practices_101/">
+<span class="md-ellipsis">
+    Secure Coding Practices 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Security_%26_Standards/Grouped/Zero_Trust_Architecture_101/">
+<span class="md-ellipsis">
+    Zero Trust Architecture 101
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-ellipsis">
+    Software Development &amp; Architecture
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+            Software Development &amp; Architecture
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Software_Development_%26_Architecture/Software_Development_%26_Architecture/">
+<span class="md-ellipsis">
+    Software Development &amp; Architecture 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_8_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_8_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Software_Development_%26_Architecture/Grouped/ADRs_101/">
+<span class="md-ellipsis">
+    ADRs 101: An Introduction to Architectural Decision Records
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Software_Development_%26_Architecture/Grouped/C4_Model_101/">
+<span class="md-ellipsis">
+    C4 Model 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Software_Development_%26_Architecture/Grouped/Domain-Driven_Design_%28DDD%29_101/">
+<span class="md-ellipsis">
+    Domain-Driven Design (DDD) 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Software_Development_%26_Architecture/Grouped/Event-Driven_Architecture_101/">
+<span class="md-ellipsis">
+    Event-Driven Architecture 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Software_Development_%26_Architecture/Grouped/Modular_Monolith_vs_Microservices_101/">
+<span class="md-ellipsis">
+    Modular Monolith vs Microservices 101
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+<span class="md-ellipsis">
+    Team Practices &amp; Methodologies
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+            Team Practices &amp; Methodologies
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Team_Practices_%26_Methodologies/Team_Practices_%26_Methodologies/">
+<span class="md-ellipsis">
+    Team Practices &amp; Methodologies 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Grouped
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_2">
+<span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Team_Practices_%26_Methodologies/Grouped/Agile_Development_101/">
+<span class="md-ellipsis">
+    Agile Development 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Team_Practices_%26_Methodologies/Grouped/Docs_as_Code_101/">
+<span class="md-ellipsis">
+    Docs as Code 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Team_Practices_%26_Methodologies/Grouped/Lightweight_Architecture_Evaluations_101/">
+<span class="md-ellipsis">
+    Lightweight Architecture Evaluations 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Team_Practices_%26_Methodologies/Grouped/RCA_%28Root_Cause_Analysis%29_101/">
+<span class="md-ellipsis">
+    Root Cause Analysis (RCA) 101
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Team_Practices_%26_Methodologies/Grouped/Scrum_vs_Kanban_101/">
+<span class="md-ellipsis">
+    Scrum vs Kanban 101: A Technical Guide for Engineers, Architects, and Technical Leaders
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-plantuml-and-mermaid">
+<span class="md-ellipsis">
+      Understanding PlantUML and Mermaid
+    </span>
+</a>
+<nav aria-label="Understanding PlantUML and Mermaid" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#plantuml-overview">
+<span class="md-ellipsis">
+      PlantUML Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mermaid-overview">
+<span class="md-ellipsis">
+      Mermaid Overview
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-areas-of-mermaid">
+<span class="md-ellipsis">
+      Key Areas of Mermaid
+    </span>
+</a>
+<nav aria-label="Key Areas of Mermaid" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-flowchart">
+<span class="md-ellipsis">
+      1. Flowchart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-sequence-diagram">
+<span class="md-ellipsis">
+      2. Sequence Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-class-diagram">
+<span class="md-ellipsis">
+      3. Class Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-state-diagram">
+<span class="md-ellipsis">
+      4. State Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-entity-relationship-diagram-erd">
+<span class="md-ellipsis">
+      5. Entity Relationship Diagram (ERD)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-user-journey-diagram">
+<span class="md-ellipsis">
+      6. User Journey Diagram
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-gantt-chart">
+<span class="md-ellipsis">
+      7. Gantt Chart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-pie-chart">
+<span class="md-ellipsis">
+      8. Pie Chart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-quadrant-chart">
+<span class="md-ellipsis">
+      9. Quadrant Chart
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-mindmap-diagram">
+<span class="md-ellipsis">
+      10. Mindmap Diagram
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#practical-insights-and-best-practices">
+<span class="md-ellipsis">
+      Practical Insights and Best Practices
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conclusion">
+<span class="md-ellipsis">
+      Conclusion
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="plantuml-mermaid-101-a-comprehensive-guide-for-engineers-architects-and-technical-leaders">PlantUML &amp; Mermaid 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders<a class="headerlink" href="#plantuml-mermaid-101-a-comprehensive-guide-for-engineers-architects-and-technical-leaders" title="Permanent link">¶</a></h1>
+<p>In the world of software engineering, effective communication of complex systems and processes is paramount. Visual diagrams serve as powerful tools to convey ideas clearly and succinctly. This guide delves into two prominent tools, PlantUML and Mermaid, offering a comprehensive understanding of their capabilities, appropriate use cases, and practical implementation strategies.</p>
+<h2 id="understanding-plantuml-and-mermaid">Understanding PlantUML and Mermaid<a class="headerlink" href="#understanding-plantuml-and-mermaid" title="Permanent link">¶</a></h2>
+<h3 id="plantuml-overview">PlantUML Overview<a class="headerlink" href="#plantuml-overview" title="Permanent link">¶</a></h3>
+<p>PlantUML is a versatile tool that allows developers to create a wide array of UML diagrams using a simple and intuitive DSL (Domain Specific Language). It integrates seamlessly with many development environments and supports complex diagrams like sequence, class, and use-case diagrams.</p>
+<h3 id="mermaid-overview">Mermaid Overview<a class="headerlink" href="#mermaid-overview" title="Permanent link">¶</a></h3>
+<p>Mermaid is a modern, markdown-inspired tool that facilitates the creation of diagrams directly within markdown files. Its syntax is designed for simplicity and readability, making it a favorite among teams that frequently document in markdown.</p>
+<h2 id="key-areas-of-mermaid">Key Areas of Mermaid<a class="headerlink" href="#key-areas-of-mermaid" title="Permanent link">¶</a></h2>
+<p>Let's explore the key diagram types supported by Mermaid, each suited for different scenarios encountered in software development.</p>
+<h3 id="1-flowchart">1. Flowchart<a class="headerlink" href="#1-flowchart" title="Permanent link">¶</a></h3>
+<p>Flowcharts are excellent for representing algorithms, workflows, or processes. They provide a visual representation of the sequence of steps in a system.</p>
+<div class="highlight"><pre><span></span><code>flowchart TD
+    A[Start] --&gt; B{Is it working?}
+    B --&gt;|Yes| C[Continue]
+    B --&gt;|No| D[Fix the issue]
+    D --&gt; B
+</code></pre></div>
+<h3 id="2-sequence-diagram">2. Sequence Diagram<a class="headerlink" href="#2-sequence-diagram" title="Permanent link">¶</a></h3>
+<p>Sequence diagrams illustrate interactions between components over time, essential for understanding system behaviors and interactions.</p>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant A as User
+    participant B as Server
+    A-&gt;&gt;B: Request Data
+    B--&gt;&gt;A: Response with Data
+</code></pre></div>
+<h3 id="3-class-diagram">3. Class Diagram<a class="headerlink" href="#3-class-diagram" title="Permanent link">¶</a></h3>
+<p>Class diagrams represent the static structure of a system, detailing classes, attributes, and relationships.</p>
+<div class="highlight"><pre><span></span><code>classDiagram
+    class Animal {
+        +String name
+        +int age
+        +makeSound()
+    }
+    class Dog {
+        +bark()
+    }
+    Animal &lt;|-- Dog
+</code></pre></div>
+<h3 id="4-state-diagram">4. State Diagram<a class="headerlink" href="#4-state-diagram" title="Permanent link">¶</a></h3>
+<p>State diagrams depict the states of an object and transitions between those states, useful for understanding object life cycles.</p>
+<div class="highlight"><pre><span></span><code>stateDiagram
+    [*] --&gt; Idle
+    Idle --&gt; Active : Start
+    Active --&gt; Idle : Stop
+</code></pre></div>
+<h3 id="5-entity-relationship-diagram-erd">5. Entity Relationship Diagram (ERD)<a class="headerlink" href="#5-entity-relationship-diagram-erd" title="Permanent link">¶</a></h3>
+<p>ERDs are used to model data structures and relationships, critical for database design.</p>
+<div class="highlight"><pre><span></span><code>erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER {
+        string name
+        string address
+    }
+</code></pre></div>
+<h3 id="6-user-journey-diagram">6. User Journey Diagram<a class="headerlink" href="#6-user-journey-diagram" title="Permanent link">¶</a></h3>
+<p>User journey diagrams map the experiences users have with a product, highlighting pain points and areas for improvement.</p>
+<div class="highlight"><pre><span></span><code>journey
+    title User Journey for Checkout
+    section Pre-Purchase
+      Search Product: 5: User
+      Add to Cart: 4: User
+    section Purchase
+      Checkout: 3: User
+      Payment: 2: User
+</code></pre></div>
+<h3 id="7-gantt-chart">7. Gantt Chart<a class="headerlink" href="#7-gantt-chart" title="Permanent link">¶</a></h3>
+<p>Gantt charts are essential for project management, displaying tasks over time.</p>
+<div class="highlight"><pre><span></span><code>gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Development
+    Design :done, des1, 2023-01-01, 10d
+    Implementation :active, imp1, after des1, 20d
+    Testing : imp2, after imp1, 10d
+</code></pre></div>
+<h3 id="8-pie-chart">8. Pie Chart<a class="headerlink" href="#8-pie-chart" title="Permanent link">¶</a></h3>
+<p>Pie charts offer a visual breakdown of categories and proportions, useful for summarizing data.</p>
+<div class="highlight"><pre><span></span><code>pie
+    title Project Cost Breakdown
+    "Development" : 60
+    "Testing" : 20
+    "Deployment" : 20
+</code></pre></div>
+<h3 id="9-quadrant-chart">9. Quadrant Chart<a class="headerlink" href="#9-quadrant-chart" title="Permanent link">¶</a></h3>
+<p>Quadrant charts help in categorizing data into four distinct areas based on two criteria, useful for strategic analysis.</p>
+<div class="highlight"><pre><span></span><code>quadrantChart
+    title Product Positioning
+    x-axis Low Quality --&gt; High Quality
+    y-axis Low Price --&gt; High Price
+    "Product A": [0.3, 0.7]
+    "Product B": [0.6, 0.2]
+</code></pre></div>
+<h3 id="10-mindmap-diagram">10. Mindmap Diagram<a class="headerlink" href="#10-mindmap-diagram" title="Permanent link">¶</a></h3>
+<p>Mindmaps are ideal for brainstorming and structuring ideas hierarchically.</p>
+<div class="highlight"><pre><span></span><code>mindmap
+  root((Project))
+    Development
+      Backend
+      Frontend
+    Testing
+    Deployment
+</code></pre></div>
+<h2 id="practical-insights-and-best-practices">Practical Insights and Best Practices<a class="headerlink" href="#practical-insights-and-best-practices" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p><strong>Choose the Right Diagram</strong>: Each diagram type serves a particular purpose. Understanding your audience and the message you wish to convey will guide your choice.</p>
+</li>
+<li>
+<p><strong>Integrate with Development Tools</strong>: Both PlantUML and Mermaid integrate with various development environments like VSCode, IntelliJ, and GitHub, enhancing productivity by embedding diagrams directly into documentation.</p>
+</li>
+<li>
+<p><strong>Keep Diagrams Updated</strong>: As systems evolve, ensure diagrams are kept up-to-date to reflect changes accurately. This is crucial for maintaining clarity and avoiding miscommunication.</p>
+</li>
+<li>
+<p><strong>Leverage Automation</strong>: Use CI/CD pipelines to generate and validate diagrams automatically, ensuring consistency and reducing manual overhead.</p>
+</li>
+<li>
+<p><strong>Encourage Collaboration</strong>: Diagrams should be a collaborative tool. Foster an environment where team members contribute to and refine diagrams.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>Mastering PlantUML and Mermaid equips engineering teams with the tools necessary to communicate complex systems effectively. By choosing the appropriate diagram type and adhering to best practices, technical leaders can enhance clarity, foster collaboration, and align engineering efforts with business goals.</p>
+<p>Embrace these tools to elevate your documentation practices, streamline communication, and drive strategic impact within your organization.</p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+<script src="../../../overrides/extra.js"></script>
+</body>
+</html>

@@ -12,28 +12,28 @@
         <meta name="author" content="Mark Bacon">
       
       
-        <link rel="canonical" href="https://tarf.co.uk/Oh_My_Zsh_Oh%20My_Posh_101/">
+        <link rel="canonical" href="https://tarf.co.uk/Security_%26_Standards/Grouped/Zero_Trust_Architecture_101/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../Secure_Coding_Practices_101/">
       
       
-        <link rel="next" href="../Additional_Topics/Additional_Topics/">
+        <link rel="next" href="../../../Software_Development_%26_Architecture/Software_Development_%26_Architecture/">
       
       
-      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="icon" href="../../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
-        <title>101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k - 101s</title>
+        <title>Zero Trust Architecture 101 - 101s</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="../overrides/extra.css">
+      <link rel="stylesheet" href="../../../overrides/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k" class="md-skip">
+        <a href="#zero-trust-architecture-101" class="md-skip">
           Skip to content
         </a>
       
@@ -94,9 +94,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="101s" class="md-header__button md-logo" aria-label="101s" data-md-component="logo">
+    <a href="../../.." title="101s" class="md-header__button md-logo" aria-label="101s" data-md-component="logo">
       
-  <img src="../../images/logo.png" alt="logo">
+  <img src="../../../../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+              Zero Trust Architecture 101
             
           </span>
         </div>
@@ -188,9 +188,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="101s" class="md-nav__button md-logo" aria-label="101s" data-md-component="logo">
+    <a href="../../.." title="101s" class="md-nav__button md-logo" aria-label="101s" data-md-component="logo">
       
-  <img src="../../images/logo.png" alt="logo">
+  <img src="../../../../images/logo.png" alt="logo">
 
     </a>
     101s
@@ -205,7 +205,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -222,30 +222,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../Oh_My_Zsh_Oh%20My_Posh_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -254,221 +234,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oh-my-zsh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Oh-My-Zsh
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Oh-My-Zsh">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-oh-my-zsh" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is Oh-My-Zsh?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aliases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aliases
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#plugins" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plugins
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Oh-My-Posh
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Oh-My-Posh">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is Oh-My-Posh?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#git-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Git Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-oh-my-zsh-vs-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comparison: Oh-My-Zsh vs Oh-My-Posh
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      Web Links
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -515,7 +280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Additional_Topics/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Additional_Topics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -571,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/Design_Patterns_in_Software_Development_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/Design_Patterns_in_Software_Development_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -592,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/Edge_Architectures_for_IoT_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/Edge_Architectures_for_IoT_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -613,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/Event_Storming_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/Event_Storming_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -634,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Additional_Topics/Grouped/RCA_for_Technical_Teams_101/" class="md-nav__link">
+      <a href="../../../Additional_Topics/Grouped/RCA_for_Technical_Teams_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -705,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Cloud_Technologies/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Cloud_Technologies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -761,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/CICD_Pipelines_in_Cloud_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/CICD_Pipelines_in_Cloud_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -782,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Event_Streaming_with_Kafka_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Event_Streaming_with_Kafka_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -803,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Google_Cloud_Platform_%28GCP%29_for_IoT_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Google_Cloud_Platform_%28GCP%29_for_IoT_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -824,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Infrastructure_as_Code_%28IaC%29_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Infrastructure_as_Code_%28IaC%29_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -845,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Cloud_Technologies/Grouped/Serverless_Computing_101/" class="md-nav__link">
+      <a href="../../../Cloud_Technologies/Grouped/Serverless_Computing_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -916,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/IoT_%26_Embedded_Systems/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/IoT_%26_Embedded_Systems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -972,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/ETSI_EN_303_645_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/ETSI_EN_303_645_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -993,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/Embedded_Systems_Design_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/Embedded_Systems_Design_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1014,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/FreeRTOS_Basics_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/FreeRTOS_Basics_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1035,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/IoT_Edge_Computing_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/IoT_Edge_Computing_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1056,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IoT_%26_Embedded_Systems/Grouped/MQTT_Protocol_101/" class="md-nav__link">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/MQTT_Protocol_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1127,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Programming_%26_Tools/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Programming_%26_Tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1183,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Git_Best_Practices_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Git_Best_Practices_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1204,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/PlantUML_%26_Mermaid_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/PlantUML_%26_Mermaid_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1225,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Python_for_Automation_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Python_for_Automation_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1246,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Rust_for_Systems_Programming_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Rust_for_Systems_Programming_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1267,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Programming_%26_Tools/Grouped/Static_Code_Analysis_101/" class="md-nav__link">
+      <a href="../../../Programming_%26_Tools/Grouped/Static_Code_Analysis_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1300,17 +1065,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1324,7 +1091,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Security & Standards
@@ -1338,7 +1105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Security_%26_Standards/" class="md-nav__link">
+      <a href="../../Security_%26_Standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1356,17 +1123,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -1380,7 +1149,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             Grouped
@@ -1394,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/ISO_30141_101/" class="md-nav__link">
+      <a href="../ISO_30141_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1415,7 +1184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/OAuth_2.0_%26_OpenID_Connect_101/" class="md-nav__link">
+      <a href="../OAuth_2.0_%26_OpenID_Connect_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1436,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/OWASP_Top_10_101/" class="md-nav__link">
+      <a href="../OWASP_Top_10_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1457,7 +1226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/Secure_Coding_Practices_101/" class="md-nav__link">
+      <a href="../Secure_Coding_Practices_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1475,10 +1244,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Security_%26_Standards/Grouped/Zero_Trust_Architecture_101/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Zero Trust Architecture 101
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1487,6 +1276,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-principles-of-zero-trust-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Principles of Zero Trust Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-trust-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero Trust Architecture Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zero Trust Architecture Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-identity-and-access-management-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Identity and Access Management (IAM)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-network-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Network Segmentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-endpoint-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Endpoint Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-data-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Data Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-monitoring-and-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Monitoring and Analytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1549,7 +1463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Software_Development_%26_Architecture/" class="md-nav__link">
+      <a href="../../../Software_Development_%26_Architecture/Software_Development_%26_Architecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1605,7 +1519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/ADRs_101/" class="md-nav__link">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/ADRs_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1626,7 +1540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/C4_Model_101/" class="md-nav__link">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/C4_Model_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1647,7 +1561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/Domain-Driven_Design_%28DDD%29_101/" class="md-nav__link">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/Domain-Driven_Design_%28DDD%29_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1668,7 +1582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/Event-Driven_Architecture_101/" class="md-nav__link">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/Event-Driven_Architecture_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1689,7 +1603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Software_Development_%26_Architecture/Grouped/Modular_Monolith_vs_Microservices_101/" class="md-nav__link">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/Modular_Monolith_vs_Microservices_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1760,7 +1674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Team_Practices_%26_Methodologies/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Team_Practices_%26_Methodologies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1816,7 +1730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Agile_Development_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Agile_Development_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1837,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Docs_as_Code_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Docs_as_Code_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1858,7 +1772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Lightweight_Architecture_Evaluations_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Lightweight_Architecture_Evaluations_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1879,7 +1793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/RCA_%28Root_Cause_Analysis%29_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/RCA_%28Root_Cause_Analysis%29_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1900,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Team_Practices_%26_Methodologies/Grouped/Scrum_vs_Kanban_101/" class="md-nav__link">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Scrum_vs_Kanban_101/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1965,81 +1879,66 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oh-my-zsh" class="md-nav__link">
+  <a href="#key-principles-of-zero-trust-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Oh-My-Zsh
+      Key Principles of Zero Trust Architecture
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Oh-My-Zsh">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-trust-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero Trust Architecture Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zero Trust Architecture Components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-is-oh-my-zsh" class="md-nav__link">
+  <a href="#1-identity-and-access-management-iam" class="md-nav__link">
     <span class="md-ellipsis">
-      What is Oh-My-Zsh?
+      1. Identity and Access Management (IAM)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#2-network-segmentation" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      2. Network Segmentation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup" class="md-nav__link">
+  <a href="#3-endpoint-security" class="md-nav__link">
     <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
+      3. Endpoint Security
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#4-data-security" class="md-nav__link">
     <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aliases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aliases
+      4. Data Security
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#plugins" class="md-nav__link">
+  <a href="#5-monitoring-and-analytics" class="md-nav__link">
     <span class="md-ellipsis">
-      Plugins
+      5. Monitoring and Analytics
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2049,93 +1948,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oh-my-posh" class="md-nav__link">
+  <a href="#implementation-strategies" class="md-nav__link">
     <span class="md-ellipsis">
-      Oh-My-Posh
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Oh-My-Posh">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is Oh-My-Posh?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#powerlevel10k-theme-setup_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Powerlevel10k Theme Setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#git-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Git Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prompt Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-oh-my-zsh-vs-oh-my-posh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comparison: Oh-My-Zsh vs Oh-My-Posh
+      Implementation Strategies
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#web-links" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
-      Web Links
+      Best Practices
     </span>
   </a>
   
@@ -2165,194 +1989,138 @@
                   
 
 
-<h1 id="101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k">101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k<a class="headerlink" href="#101-guide-to-oh-my-zsh-and-oh-my-posh-with-powerlevel10k" title="Permanent link">&para;</a></h1>
+<h1 id="zero-trust-architecture-101">Zero Trust Architecture 101<a class="headerlink" href="#zero-trust-architecture-101" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The terminal prompt is more than a simple interface to your operating system. Tools like <strong>Oh-My-Zsh</strong> and <strong>Oh-My-Posh</strong> with themes like <strong>Powerlevel10k</strong> transform the terminal into a powerful productivity hub with features such as:</p>
-<ul>
-<li>Enhanced prompt customization.</li>
-<li>Git integration for faster version control.</li>
-<li>Aliases for commonly used commands to save time.</li>
-<li>Color-coded feedback, advanced theming, and rich visual cues.</li>
-<li>Plugins that extend functionality in meaningful ways.</li>
-</ul>
-<p>This guide covers setting up and using these tools on <strong>Windows</strong> and <strong>Linux</strong>, showcasing their features, examples of prompts, tight Git integration, and how to maximize their potential for productivity and aesthetics.</p>
+<p>Zero Trust Architecture (ZTA) is a transformative approach to cybersecurity that fundamentally challenges traditional security paradigms. In an era where data breaches are increasingly sophisticated and pervasive, adopting a Zero Trust model is crucial for protecting digital assets. This architecture is built on the principle of "never trust, always verify," ensuring that every request for access is authenticated and authorized irrespective of its origin. </p>
+<p>This technical guide aims to provide engineers, architects, and technical leaders with a comprehensive understanding of Zero Trust Architecture, including its components, implementation strategies, and best practices.</p>
 <hr />
-<h2 id="oh-my-zsh">Oh-My-Zsh<a class="headerlink" href="#oh-my-zsh" title="Permanent link">&para;</a></h2>
-<h3 id="what-is-oh-my-zsh">What is Oh-My-Zsh?<a class="headerlink" href="#what-is-oh-my-zsh" title="Permanent link">&para;</a></h3>
-<p><strong>Oh-My-Zsh</strong> is a robust framework for managing Zsh (Z shell) configuration. It simplifies terminal use by providing custom themes, plugins, and a rich library of helpful aliases. With its modular and community-driven approach, users can quickly enhance their terminal environment.</p>
-<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<h2 id="key-principles-of-zero-trust-architecture">Key Principles of Zero Trust Architecture<a class="headerlink" href="#key-principles-of-zero-trust-architecture" title="Permanent link">&para;</a></h2>
 <ol>
-<li>
-<p><strong>Linux/MacOS</strong>
-   <div class="highlight"><pre><span></span><code>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Windows</strong> (via WSL): Install <strong>Zsh</strong> and follow the Linux steps.</p>
-</li>
+<li><strong>Verify Explicitly</strong>: Always authenticate and authorize every request using all available data points.</li>
+<li><strong>Use Least Privilege Access</strong>: Limit user access permissions to the bare minimum required for their role.</li>
+<li><strong>Assume Breach</strong>: Design systems with the assumption that a breach is inevitable, focusing on minimizing impact and isolating threats.</li>
 </ol>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zsh
+<hr />
+<h2 id="zero-trust-architecture-components">Zero Trust Architecture Components<a class="headerlink" href="#zero-trust-architecture-components" title="Permanent link">&para;</a></h2>
+<h3 id="1-identity-and-access-management-iam">1. Identity and Access Management (IAM)<a class="headerlink" href="#1-identity-and-access-management-iam" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Purpose</strong>: Central to Zero Trust, IAM ensures that access is granted based on verified identities and is continuously monitored.</li>
+<li><strong>Components</strong>:</li>
+<li>Multi-factor Authentication (MFA)</li>
+<li>Single Sign-On (SSO)</li>
+<li>Privileged Access Management (PAM)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>flowchart TB
+    A[User Request] --&gt;|Authenticate| B(MFA)
+    B --&gt; C{Is User Verified?}
+    C --&gt;|Yes| D[Access Granted]
+    C --&gt;|No| E[Access Denied]
 </code></pre></div>
-<p>Then set Zsh as the default shell:
-   <div class="highlight"><pre><span></span><code>chsh<span class="w"> </span>-s<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>zsh<span class="k">)</span>
-</code></pre></div></p>
-<h3 id="powerlevel10k-theme-setup">Powerlevel10k Theme Setup<a class="headerlink" href="#powerlevel10k-theme-setup" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Install the theme:
-   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>https://github.com/romkatv/powerlevel10k.git<span class="w"> </span><span class="nv">$ZSH_CUSTOM</span>/themes/powerlevel10k
-</code></pre></div></li>
-<li>Configure <strong>~/.zshrc</strong> to use Powerlevel10k:
-   <div class="highlight"><pre><span></span><code><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;powerlevel10k/powerlevel10k&quot;</span>
-</code></pre></div></li>
-<li>Apply changes:
-   <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/.zshrc
-</code></pre></div></li>
-<li>Configure the theme interactively:
-   <div class="highlight"><pre><span></span><code>p10k<span class="w"> </span>configure
+<h3 id="2-network-segmentation">2. Network Segmentation<a class="headerlink" href="#2-network-segmentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Purpose</strong>: Divides the network into smaller, manageable segments to control access and limit the spread of potential breaches.</li>
+<li><strong>Components</strong>:</li>
+<li>Micro-segmentation</li>
+<li>Software-Defined Perimeters (SDP)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>stateDiagram-v2
+    [*] --&gt; Public
+    Public --&gt; Protected
+    Protected --&gt; Secure
+    Secure --&gt; [*]
+    Public: Public Network
+    Protected: Protected Network
+    Secure: Secure Network
 </code></pre></div>
-   The configuration wizard allows you to choose visual styles, powerline separators, and decide what system information is displayed.</li>
-</ol>
-<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
-<h4 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h4>
-<p>Oh-My-Zsh comes with a rich set of predefined aliases to enhance productivity. These shortcuts minimize typing and streamline common workflows:</p>
+<h3 id="3-endpoint-security">3. Endpoint Security<a class="headerlink" href="#3-endpoint-security" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Git</strong>:</li>
-<li><code>ga</code>: <code>git add</code></li>
-<li><code>gc</code>: <code>git commit</code></li>
-<li><code>gp</code>: <code>git push</code></li>
-<li>
-<p><code>gl</code>: <code>git pull</code></p>
-</li>
-<li>
-<p><strong>Directory Navigation</strong>:</p>
-</li>
-<li><code>..</code>: Navigate up one directory.</li>
-<li><code>...</code>: Navigate up two directories.</li>
-<li><code>~</code>: Shortcut to home directory.</li>
-<li>
-<p><code>cd -</code>: Jump back to the previous directory.</p>
-</li>
-<li>
-<p><strong>System Commands</strong>:</p>
-</li>
-<li><code>update</code>: Update all packages with a single command.</li>
-<li><code>z</code>: Quickly jump to frequently used directories based on your usage history.</li>
+<li><strong>Purpose</strong>: Ensures all devices accessing the network are secure and compliant with policies.</li>
+<li><strong>Components</strong>:</li>
+<li>Endpoint Detection and Response (EDR)</li>
+<li>Mobile Device Management (MDM)</li>
 </ul>
-<h4 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h4>
-<p>Plugins extend Oh-My-Zsh's functionality. You can easily enable and manage plugins to add specific features. Some popular options include:</p>
-<ul>
-<li><strong>git</strong>: Adds advanced Git shortcuts and displays repository status in the prompt.</li>
-<li><strong>zsh-autosuggestions</strong>: Provides command suggestions based on your history as you type.</li>
-<li><strong>zsh-syntax-highlighting</strong>: Highlights command syntax in real-time, making errors easier to spot.</li>
-<li><strong>history-substring-search</strong>: Allows substring searching in your command history.</li>
-</ul>
-<p>To enable plugins, update the <code>plugins</code> section in <strong>~/.zshrc</strong>:
-<div class="highlight"><pre><span></span><code><span class="nv">plugins</span><span class="o">=(</span>git<span class="w"> </span>zsh-autosuggestions<span class="w"> </span>zsh-syntax-highlighting<span class="w"> </span>history-substring-search<span class="o">)</span>
-</code></pre></div></p>
-<h4 id="prompt-example">Prompt Example<a class="headerlink" href="#prompt-example" title="Permanent link">&para;</a></h4>
-<p>With Powerlevel10k, a typical Zsh prompt might include:
-- <strong>User and host information</strong>: Useful for remote sessions.
-- <strong>Current working directory</strong>: Always know where you are.
-- <strong>Git branch and status</strong>: See repository state at a glance.
-- <strong>Command execution time</strong>: Track performance of long-running tasks.
-- <strong>Error status</strong>: Visualize errors from previous commands immediately.</p>
-<hr />
-<h2 id="oh-my-posh">Oh-My-Posh<a class="headerlink" href="#oh-my-posh" title="Permanent link">&para;</a></h2>
-<h3 id="what-is-oh-my-posh">What is Oh-My-Posh?<a class="headerlink" href="#what-is-oh-my-posh" title="Permanent link">&para;</a></h3>
-<p><strong>Oh-My-Posh</strong> is a cross-platform prompt theme engine that brings the customization power of Zsh themes to <strong>PowerShell</strong>, <strong>Bash</strong>, <strong>Fish</strong>, and more. It offers beautiful, highly configurable themes that enhance productivity.</p>
-<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p><strong>Windows</strong>
-   Install via PowerShell:
-   <div class="highlight"><pre><span></span><code><span class="nb">Install-Module</span> <span class="n">oh-my-posh</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Linux/MacOS</strong>
-   Install via Homebrew:
-   <div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>oh-my-posh
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="powerlevel10k-theme-setup_1">Powerlevel10k Theme Setup<a class="headerlink" href="#powerlevel10k-theme-setup_1" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Download the theme:
-   <div class="highlight"><pre><span></span><code><span class="n">oh-my-posh</span> <span class="n">get</span> <span class="n">theme</span> <span class="n">powerlevel10k_rainbow</span>
-</code></pre></div></li>
-<li>Set up your profile to load the theme:
-   <div class="highlight"><pre><span></span><code><span class="n">notepad</span> <span class="nv">$PROFILE</span>
+<div class="highlight"><pre><span></span><code>classDiagram
+    class Endpoint {
+        +isCompliant(): bool
+        +monitorActivity(): void
+    }
+    class EDR {
+        +detectThreats(): list
+        +respondToThreats(): void
+    }
+    class MDM {
+        +enforcePolicies(): void
+        +manageDevices(): list
+    }
+    Endpoint --&gt; EDR
+    Endpoint --&gt; MDM
 </code></pre></div>
-   Add the following line:
-   <div class="highlight"><pre><span></span><code><span class="n">oh-my-posh</span> <span class="n">init</span> <span class="n">pwsh</span> <span class="p">-</span><span class="n">-config</span> <span class="p">&lt;</span><span class="n">path-to-theme</span><span class="p">.</span><span class="n">json</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
-</code></pre></div></li>
-<li>Reload the profile:
-   <div class="highlight"><pre><span></span><code><span class="p">.</span> <span class="nv">$PROFILE</span>
-</code></pre></div></li>
-</ol>
-<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">&para;</a></h3>
-<h4 id="git-integration">Git Integration<a class="headerlink" href="#git-integration" title="Permanent link">&para;</a></h4>
-<p>Oh-My-Posh provides rich Git integration out of the box. It displays:
-- The <strong>current branch</strong> and its status.
-- <strong>Untracked</strong> and <strong>staged changes</strong>, shown with clear icons.
-- Push and pull indicators, ensuring you’re always aware of your repository’s state.</p>
-<h4 id="prompt-example_1">Prompt Example<a class="headerlink" href="#prompt-example_1" title="Permanent link">&para;</a></h4>
-<p>A typical Powerlevel10k-powered Oh-My-Posh prompt might display:
-- <strong>User and host</strong>: To identify the session context.
-- <strong>Working directory</strong>: Helps you navigate complex folder structures.
-- <strong>Git repository info</strong>: Visualize branch, commits, and status.
-- <strong>Kubernetes context</strong>: Manage Kubernetes clusters effortlessly.
-- <strong>Command timing</strong>: Understand resource consumption and performance bottlenecks.</p>
-<hr />
-<h2 id="comparison-oh-my-zsh-vs-oh-my-posh">Comparison: Oh-My-Zsh vs Oh-My-Posh<a class="headerlink" href="#comparison-oh-my-zsh-vs-oh-my-posh" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Oh-My-Zsh</th>
-<th>Oh-My-Posh</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Shells Supported</td>
-<td>Zsh</td>
-<td>PowerShell, Bash, Zsh, Fish</td>
-</tr>
-<tr>
-<td>Platform</td>
-<td>Linux/MacOS</td>
-<td>Cross-platform</td>
-</tr>
-<tr>
-<td>Git Integration</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Plugin System</td>
-<td>Extensive</td>
-<td>Moderate</td>
-</tr>
-<tr>
-<td>Customization</td>
-<td>Themes, plugins, aliases</td>
-<td>Themes</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="web-links">Web Links<a class="headerlink" href="#web-links" title="Permanent link">&para;</a></h2>
+<h3 id="4-data-security">4. Data Security<a class="headerlink" href="#4-data-security" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://ohmyz.sh/">Oh-My-Zsh Official Website</a></li>
-<li><a href="https://github.com/romkatv/powerlevel10k">Powerlevel10k GitHub</a></li>
-<li><a href="https://ohmyposh.dev/">Oh-My-Posh Official Website</a></li>
-<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">Zsh Syntax Highlighting Plugin</a></li>
-<li><a href="https://github.com/zsh-users/zsh-autosuggestions">Zsh Autosuggestions Plugin</a></li>
+<li><strong>Purpose</strong>: Protects data at rest and in transit, ensuring encryption and integrity.</li>
+<li><strong>Components</strong>:</li>
+<li>Data Loss Prevention (DLP)</li>
+<li>Encryption</li>
 </ul>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant User
+    participant Application
+    participant EncryptionModule
+    participant Database
+
+    User-&gt;&gt;Application: Request Data
+    Application-&gt;&gt;EncryptionModule: Encrypt Data
+    EncryptionModule-&gt;&gt;Database: Store Encrypted Data
+    Database--&gt;&gt;EncryptionModule: Retrieve Encrypted Data
+    EncryptionModule--&gt;&gt;Application: Decrypt Data
+    Application--&gt;&gt;User: Deliver Data
+</code></pre></div>
+<h3 id="5-monitoring-and-analytics">5. Monitoring and Analytics<a class="headerlink" href="#5-monitoring-and-analytics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Purpose</strong>: Provides continuous monitoring of network activities to detect and respond to anomalies.</li>
+<li><strong>Components</strong>:</li>
+<li>Security Information and Event Management (SIEM)</li>
+<li>User and Entity Behavior Analytics (UEBA)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>C4Container
+    title Zero Trust Monitoring System
+    Container(user, &quot;User&quot;, &quot;External User&quot;)
+    Container(sp, &quot;SIEM Platform&quot;, &quot;Real-time Monitoring&quot;)
+    ContainerDb(db, &quot;Log Database&quot;, &quot;Stores Event Logs&quot;)
+    Container(ueba, &quot;UEBA&quot;, &quot;Analyzes User Behavior&quot;)
+
+    user --&gt; sp : Sends Event Data
+    sp --&gt; db : Stores Logs
+    sp --&gt; ueba : Sends Behavior Data
+    ueba --&gt; sp : Anomaly Reports
+</code></pre></div>
+<hr />
+<h2 id="implementation-strategies">Implementation Strategies<a class="headerlink" href="#implementation-strategies" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Adopt a Phased Approach</strong>: Implement Zero Trust in stages, starting with the most critical assets.</li>
+<li><strong>Leverage Automation</strong>: Use automated tools for monitoring, threat detection, and response to enhance efficiency.</li>
+<li><strong>Integrate with Existing Systems</strong>: Ensure Zero Trust solutions can coexist and integrate with current IT infrastructure.</li>
+</ol>
+<hr />
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Regularly Update Security Policies</strong>: Ensure policies are up-to-date and reflect the current threat landscape.</li>
+<li><strong>Continuous Training</strong>: Educate employees on security best practices and the importance of Zero Trust.</li>
+<li><strong>Conduct Regular Audits</strong>: Perform security audits to identify vulnerabilities and ensure compliance with Zero Trust principles.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pie
+    title Zero Trust Best Practices
+    &quot;Policy Updates&quot;: 30
+    &quot;Continuous Training&quot;: 25
+    &quot;Regular Audits&quot;: 20
+    &quot;Automation&quot;: 15
+    &quot;Integration&quot;: 10
+</code></pre></div>
 <hr />
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>Both Oh-My-Zsh and Oh-My-Posh significantly enhance terminal productivity and aesthetics, making them essential tools for developers and system administrators. <strong>Oh-My-Zsh</strong> is perfect for Unix-like environments, offering deep customization and extensive plugin support. Meanwhile, <strong>Oh-My-Posh</strong> brings similar benefits to a wider range of shells and operating systems. With features like Git integration, intuitive aliases, and fully customizable prompts, these tools streamline workflows, enhance visual clarity, and make terminal work more engaging.</p>
+<p>Zero Trust Architecture is not just a security framework but a strategic approach that enhances an organization's overall security posture. By implementing ZTA, organizations can better protect their assets from modern cyber threats while ensuring compliance and fostering trust.</p>
+<p>As you embark on this journey, remember that Zero Trust is a continuous process that requires adaptation to evolving security landscapes. Adopt a strategic mindset, leverage technology, and foster a culture of security within your teams to ensure successful implementation.</p>
+<p>By doing so, you establish a robust defense mechanism that is not only resilient but also aligned with your business objectives.</p>
 
 
 
@@ -2399,12 +2167,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
-        <script src="../overrides/extra.js"></script>
+        <script src="../../../overrides/extra.js"></script>
       
     
   </body>

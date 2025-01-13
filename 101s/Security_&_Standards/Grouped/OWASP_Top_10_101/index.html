@@ -1,0 +1,2937 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="101s">
+      
+      
+        <meta name="author" content="Mark Bacon">
+      
+      
+        <link rel="canonical" href="https://tarf.co.uk/Security_%26_Standards/Grouped/OWASP_Top_10_101/">
+      
+      
+        <link rel="prev" href="../OAuth_2.0_%26_OpenID_Connect_101/">
+      
+      
+        <link rel="next" href="../Secure_Coding_Practices_101/">
+      
+      
+      <link rel="icon" href="../../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>OWASP Top 10 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders - 101s</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#owasp-top-10-101-a-comprehensive-guide-for-engineers-architects-and-technical-leaders" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="101s" class="md-header__button md-logo" aria-label="101s" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            101s
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OWASP Top 10 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="101s" class="md-nav__button md-logo" aria-label="101s" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    101s
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional_Topics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Oh_My_Zsh_Oh%20My_Posh_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    101 Guide to Oh-My-Zsh and Oh-My-Posh with Powerlevel10k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional Topics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Additional Topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Additional_Topics/Additional_Topics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional Topics 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Additional_Topics/Grouped/Design_Patterns_in_Software_Development_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns in Software Development 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Additional_Topics/Grouped/Edge_Architectures_for_IoT_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Edge Architectures for IoT 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Additional_Topics/Grouped/Event_Storming_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Event Storming 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Additional_Topics/Grouped/RCA_for_Technical_Teams_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RCA for Technical Teams 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cloud Technologies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud Technologies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cloud_Technologies/Cloud_Technologies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloud Technologies 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cloud_Technologies/Grouped/CICD_Pipelines_in_Cloud_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD Pipelines in Cloud 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cloud_Technologies/Grouped/Event_Streaming_with_Kafka_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Event Streaming with Kafka 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cloud_Technologies/Grouped/Google_Cloud_Platform_%28GCP%29_for_IoT_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Cloud Platform (GCP) for IoT 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cloud_Technologies/Grouped/Infrastructure_as_Code_%28IaC%29_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure as Code (IaC) 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cloud_Technologies/Grouped/Serverless_Computing_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serverless Computing 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IoT & Embedded Systems
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            IoT & Embedded Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../IoT_%26_Embedded_Systems/IoT_%26_Embedded_Systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IoT &amp; Embedded Systems 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/ETSI_EN_303_645_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ETSI EN 303 645 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/Embedded_Systems_Design_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Embedded Systems Design 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/FreeRTOS_Basics_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FreeRTOS Basics 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/IoT_Edge_Computing_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IoT Edge Computing 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../IoT_%26_Embedded_Systems/Grouped/MQTT_Protocol_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MQTT Protocol 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming & Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Programming & Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Programming_%26_Tools/Programming_%26_Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programming &amp; Tools 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Programming_%26_Tools/Grouped/Git_Best_Practices_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Best Practices 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Programming_%26_Tools/Grouped/PlantUML_%26_Mermaid_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PlantUML &amp; Mermaid 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Programming_%26_Tools/Grouped/Python_for_Automation_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python for Automation 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Programming_%26_Tools/Grouped/Rust_for_Systems_Programming_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rust for Systems Programming 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Programming_%26_Tools/Grouped/Static_Code_Analysis_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Static Code Analysis 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security & Standards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Security & Standards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security_%26_Standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security &amp; Standards 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ISO_30141_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ISO 30141 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OAuth_2.0_%26_OpenID_Connect_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth 2.0 &amp; OpenID Connect 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OWASP Top 10 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OWASP Top 10 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-owasp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to OWASP Top 10
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to OWASP Top 10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-owasp-top-10-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      The OWASP Top 10 List
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-broken-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Broken Access Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Broken Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-access-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Access Control Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cryptographic-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Cryptographic Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Cryptographic Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-encryption-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Encryption Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-sql-injection-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: SQL Injection Attack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-insecure-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Insecure Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Insecure Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-secure-design-mindmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Secure Design Mindmap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-security-misconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Security Misconfiguration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Security Misconfiguration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-configuration-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Configuration State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vulnerable-and-outdated-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Vulnerable and Outdated Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Vulnerable and Outdated Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-component-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Component Lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-identification-and-authentication-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Identification and Authentication Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Identification and Authentication Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-authentication-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Authentication Sequence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-software-and-data-integrity-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Software and Data Integrity Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Software and Data Integrity Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-integrity-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Integrity Check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-logging-and-monitoring-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Security Logging and Monitoring Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Security Logging and Monitoring Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-logging-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Logging Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-server-side-request-forgery-ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Server-Side Request Forgery (SSRF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Server-Side Request Forgery (SSRF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-ssrf-attack-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: SSRF Attack Path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Secure_Coding_Practices_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Secure Coding Practices 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Zero_Trust_Architecture_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zero Trust Architecture 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software Development & Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Software Development & Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software_Development_%26_Architecture/Software_Development_%26_Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Development &amp; Architecture 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/ADRs_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADRs 101: An Introduction to Architectural Decision Records
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/C4_Model_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C4 Model 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/Domain-Driven_Design_%28DDD%29_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain-Driven Design (DDD) 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/Event-Driven_Architecture_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Event-Driven Architecture 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software_Development_%26_Architecture/Grouped/Modular_Monolith_vs_Microservices_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modular Monolith vs Microservices 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Team Practices & Methodologies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Team Practices & Methodologies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Team_Practices_%26_Methodologies/Team_Practices_%26_Methodologies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Team Practices &amp; Methodologies 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Grouped
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            Grouped
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Agile_Development_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agile Development 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Docs_as_Code_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docs as Code 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Lightweight_Architecture_Evaluations_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lightweight Architecture Evaluations 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/RCA_%28Root_Cause_Analysis%29_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Root Cause Analysis (RCA) 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Team_Practices_%26_Methodologies/Grouped/Scrum_vs_Kanban_101/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scrum vs Kanban 101: A Technical Guide for Engineers, Architects, and Technical Leaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-owasp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to OWASP Top 10
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to OWASP Top 10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-owasp-top-10-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      The OWASP Top 10 List
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-broken-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Broken Access Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Broken Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-access-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Access Control Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cryptographic-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Cryptographic Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Cryptographic Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-encryption-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Encryption Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-sql-injection-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: SQL Injection Attack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-insecure-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Insecure Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Insecure Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-secure-design-mindmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Secure Design Mindmap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-security-misconfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Security Misconfiguration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Security Misconfiguration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-configuration-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Configuration State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vulnerable-and-outdated-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Vulnerable and Outdated Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Vulnerable and Outdated Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-component-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Component Lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-identification-and-authentication-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Identification and Authentication Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Identification and Authentication Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-authentication-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Authentication Sequence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-software-and-data-integrity-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Software and Data Integrity Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Software and Data Integrity Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-integrity-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Integrity Check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-logging-and-monitoring-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Security Logging and Monitoring Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Security Logging and Monitoring Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-logging-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Logging Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-server-side-request-forgery-ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Server-Side Request Forgery (SSRF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Server-Side Request Forgery (SSRF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-ssrf-attack-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: SSRF Attack Path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-practices_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="owasp-top-10-101-a-comprehensive-guide-for-engineers-architects-and-technical-leaders">OWASP Top 10 101: A Comprehensive Guide for Engineers, Architects, and Technical Leaders<a class="headerlink" href="#owasp-top-10-101-a-comprehensive-guide-for-engineers-architects-and-technical-leaders" title="Permanent link">&para;</a></h1>
+<p>The OWASP Top 10 is a powerful awareness document for web application security, representing a broad consensus about the most critical security risks to web applications. As seasoned engineers, architects, and technical leaders, understanding and addressing these vulnerabilities is crucial for delivering secure, scalable, and robust systems.</p>
+<h2 id="introduction-to-owasp-top-10">Introduction to OWASP Top 10<a class="headerlink" href="#introduction-to-owasp-top-10" title="Permanent link">&para;</a></h2>
+<p>The Open Web Application Security Project (OWASP) compiles the Top 10 list to highlight the most pressing security vulnerabilities in web applications. This guide provides an in-depth look at each of these vulnerabilities, complete with visualizations, practical advice, and code snippets to help you implement best practices.</p>
+<h3 id="the-owasp-top-10-list">The OWASP Top 10 List<a class="headerlink" href="#the-owasp-top-10-list" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Broken Access Control</strong></li>
+<li><strong>Cryptographic Failures</strong></li>
+<li><strong>Injection</strong></li>
+<li><strong>Insecure Design</strong></li>
+<li><strong>Security Misconfiguration</strong></li>
+<li><strong>Vulnerable and Outdated Components</strong></li>
+<li><strong>Identification and Authentication Failures</strong></li>
+<li><strong>Software and Data Integrity Failures</strong></li>
+<li><strong>Security Logging and Monitoring Failures</strong></li>
+<li><strong>Server-Side Request Forgery (SSRF)</strong></li>
+</ol>
+<hr />
+<h2 id="1-broken-access-control">1. Broken Access Control<a class="headerlink" href="#1-broken-access-control" title="Permanent link">&para;</a></h2>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>Access control enforces policy such that users cannot act outside of their intended permissions. Failures typically lead to unauthorized information disclosure, modification, or destruction of data, or performing a business function outside of the user’s limits.</p>
+<h3 id="diagram-access-control-flow">Diagram: Access Control Flow<a class="headerlink" href="#diagram-access-control-flow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>flowchart TD
+    A[User Request] --&gt;|Access Check| B{Access Control}
+    B --&gt;|Allow| C[Grant Access]
+    B --&gt;|Deny| D[Access Denied]
+</code></pre></div>
+<h3 id="key-practices">Key Practices<a class="headerlink" href="#key-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement role-based access control (RBAC) and test thoroughly.</li>
+<li>Minimize CORS usage and enforce strict policies.</li>
+</ul>
+<hr />
+<h2 id="2-cryptographic-failures">2. Cryptographic Failures<a class="headerlink" href="#2-cryptographic-failures" title="Permanent link">&para;</a></h2>
+<h3 id="overview_1">Overview<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h3>
+<p>Cryptographic failures often involve sensitive data exposure. This can occur when data is transmitted without encryption or stored insecurely.</p>
+<h3 id="diagram-encryption-workflow">Diagram: Encryption Workflow<a class="headerlink" href="#diagram-encryption-workflow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant User
+    participant Application
+    participant Database
+
+    User-&gt;&gt;Application: Request with Sensitive Data
+    Application-&gt;&gt;Database: Encrypt and Store Data
+    Database--&gt;&gt;Application: Encrypted Data
+    Application--&gt;&gt;User: Encrypted Response
+</code></pre></div>
+<h3 id="key-practices_1">Key Practices<a class="headerlink" href="#key-practices_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use TLS for data in transit.</li>
+<li>Encrypt sensitive data at rest using established cryptographic algorithms.</li>
+</ul>
+<hr />
+<h2 id="3-injection">3. Injection<a class="headerlink" href="#3-injection" title="Permanent link">&para;</a></h2>
+<h3 id="overview_2">Overview<a class="headerlink" href="#overview_2" title="Permanent link">&para;</a></h3>
+<p>Injection flaws, such as SQL, NoSQL, Command Injection, etc., occur when untrusted data is sent to an interpreter as part of a command or query.</p>
+<h3 id="diagram-sql-injection-attack">Diagram: SQL Injection Attack<a class="headerlink" href="#diagram-sql-injection-attack" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>erDiagram
+    USER {
+        string username
+        string password
+    }
+
+    attack[&quot;SQL Injection&quot;] {
+        string payload
+    }
+
+    USER ||--o{ attack : &quot;Vulnerable To&quot;
+</code></pre></div>
+<h3 id="key-practices_2">Key Practices<a class="headerlink" href="#key-practices_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use parameterized queries.</li>
+<li>Validate and sanitize input data.</li>
+</ul>
+<hr />
+<h2 id="4-insecure-design">4. Insecure Design<a class="headerlink" href="#4-insecure-design" title="Permanent link">&para;</a></h2>
+<h3 id="overview_3">Overview<a class="headerlink" href="#overview_3" title="Permanent link">&para;</a></h3>
+<p>Insecure design involves missing or ineffective security controls in the application architecture.</p>
+<h3 id="diagram-secure-design-mindmap">Diagram: Secure Design Mindmap<a class="headerlink" href="#diagram-secure-design-mindmap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>mindmap
+  root((Insecure Design))
+    Concepts
+      BestPractices
+      ThreatModelling
+    Tools
+      StaticAnalysis
+      DynamicTesting
+</code></pre></div>
+<h3 id="key-practices_3">Key Practices<a class="headerlink" href="#key-practices_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conduct regular threat modeling.</li>
+<li>Use secure coding practices and frameworks.</li>
+</ul>
+<hr />
+<h2 id="5-security-misconfiguration">5. Security Misconfiguration<a class="headerlink" href="#5-security-misconfiguration" title="Permanent link">&para;</a></h2>
+<h3 id="overview_4">Overview<a class="headerlink" href="#overview_4" title="Permanent link">&para;</a></h3>
+<p>Security misconfiguration is the most common issue. It often results from insecure default configurations, incomplete configurations, open cloud storage, or verbose error messages.</p>
+<h3 id="diagram-configuration-state">Diagram: Configuration State<a class="headerlink" href="#diagram-configuration-state" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>stateDiagram
+    [*] --&gt; Unconfigured
+    Unconfigured --&gt; Configured : Secure Setup
+    Configured --&gt; [*] : Normal Operation
+    Configured --&gt; Misconfigured : Error/Negligence
+</code></pre></div>
+<h3 id="key-practices_4">Key Practices<a class="headerlink" href="#key-practices_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement a repeatable hardening process.</li>
+<li>Use automated tools to verify configurations and settings.</li>
+</ul>
+<hr />
+<h2 id="6-vulnerable-and-outdated-components">6. Vulnerable and Outdated Components<a class="headerlink" href="#6-vulnerable-and-outdated-components" title="Permanent link">&para;</a></h2>
+<h3 id="overview_5">Overview<a class="headerlink" href="#overview_5" title="Permanent link">&para;</a></h3>
+<p>Using components with known vulnerabilities can compromise application security.</p>
+<h3 id="diagram-component-lifecycle">Diagram: Component Lifecycle<a class="headerlink" href="#diagram-component-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>timeline
+    title Vulnerable Component Lifecycle
+    2022 : Identify Vulnerability
+    2023 : Patch Available
+    2023 : Update Implemented
+    2024 : New Vulnerability
+</code></pre></div>
+<h3 id="key-practices_5">Key Practices<a class="headerlink" href="#key-practices_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Regularly update and patch dependencies.</li>
+<li>Use software composition analysis tools to track component vulnerabilities.</li>
+</ul>
+<hr />
+<h2 id="7-identification-and-authentication-failures">7. Identification and Authentication Failures<a class="headerlink" href="#7-identification-and-authentication-failures" title="Permanent link">&para;</a></h2>
+<h3 id="overview_6">Overview<a class="headerlink" href="#overview_6" title="Permanent link">&para;</a></h3>
+<p>Failures in authentication and session management can allow attackers to compromise passwords, keys, or session tokens.</p>
+<h3 id="diagram-authentication-sequence">Diagram: Authentication Sequence<a class="headerlink" href="#diagram-authentication-sequence" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant User
+    participant AuthServer
+    participant App
+
+    User-&gt;&gt;AuthServer: Login Request
+    AuthServer--&gt;&gt;User: Token
+    User-&gt;&gt;App: Access with Token
+    App--&gt;&gt;User: Access Granted
+</code></pre></div>
+<h3 id="key-practices_6">Key Practices<a class="headerlink" href="#key-practices_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement multi-factor authentication.</li>
+<li>Use secure password storage strategies like bcrypt.</li>
+</ul>
+<hr />
+<h2 id="8-software-and-data-integrity-failures">8. Software and Data Integrity Failures<a class="headerlink" href="#8-software-and-data-integrity-failures" title="Permanent link">&para;</a></h2>
+<h3 id="overview_7">Overview<a class="headerlink" href="#overview_7" title="Permanent link">&para;</a></h3>
+<p>Integrity failures occur when data or software is tampered with, leading to unauthorized access or control.</p>
+<h3 id="diagram-integrity-check">Diagram: Integrity Check<a class="headerlink" href="#diagram-integrity-check" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>classDiagram
+    class Application {
+        +verifyChecksum()
+        +validateSignature()
+    }
+</code></pre></div>
+<h3 id="key-practices_7">Key Practices<a class="headerlink" href="#key-practices_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use checksums and digital signatures.</li>
+<li>Implement integrity checks during data transfer and storage.</li>
+</ul>
+<hr />
+<h2 id="9-security-logging-and-monitoring-failures">9. Security Logging and Monitoring Failures<a class="headerlink" href="#9-security-logging-and-monitoring-failures" title="Permanent link">&para;</a></h2>
+<h3 id="overview_8">Overview<a class="headerlink" href="#overview_8" title="Permanent link">&para;</a></h3>
+<p>Without proper logging and monitoring, breaches may go undetected for extended periods, eroding trust and compliance.</p>
+<h3 id="diagram-logging-workflow">Diagram: Logging Workflow<a class="headerlink" href="#diagram-logging-workflow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>flowchart LR
+    A[Application] --&gt; B[Log Events]
+    B --&gt; C[Monitor Logs]
+    C --&gt; D[Alert Incidents]
+</code></pre></div>
+<h3 id="key-practices_8">Key Practices<a class="headerlink" href="#key-practices_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement centralized log management.</li>
+<li>Regularly review logs and alerts.</li>
+</ul>
+<hr />
+<h2 id="10-server-side-request-forgery-ssrf">10. Server-Side Request Forgery (SSRF)<a class="headerlink" href="#10-server-side-request-forgery-ssrf" title="Permanent link">&para;</a></h2>
+<h3 id="overview_9">Overview<a class="headerlink" href="#overview_9" title="Permanent link">&para;</a></h3>
+<p>In SSRF, an attacker can abuse functionality on the server to read or update internal resources.</p>
+<h3 id="diagram-ssrf-attack-path">Diagram: SSRF Attack Path<a class="headerlink" href="#diagram-ssrf-attack-path" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TD
+    Attacker --&gt;|Exploit SSRF| Server
+    Server --&gt;|Access| InternalResource
+</code></pre></div>
+<h3 id="key-practices_9">Key Practices<a class="headerlink" href="#key-practices_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate and sanitize all inputs.</li>
+<li>Use network segmentation and firewalls to limit resource access.</li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>The OWASP Top 10 provides a roadmap for addressing the most critical security risks in web applications. By understanding and mitigating these vulnerabilities, technical leaders can enhance the security posture of their systems, ensuring robust protection against evolving threats. As you integrate these practices, continuously monitor and update your approach to align with industry standards and emerging security challenges.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../overrides/extra.js"></script>
+      
+    
+  </body>
+</html>
