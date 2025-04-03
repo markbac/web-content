@@ -7,3 +7,9 @@
     RewriteCond %{HTTPS} !=on
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
+
+Redirect 301 /mark /mark.vcf
+Redirect 301 /ali /ali.vcf
+Redirect 301 /rowan /rowan.vcf
+Redirect 301 /arlo /arlo.vcf
+
