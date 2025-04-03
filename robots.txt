@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /mark.vcf
+Disallow: /mark/
+Disallow: /ali.vcf
+Disallow: /ali/
+Disallow: /rowan.vcf
+Disallow: /rowan/
+Disallow: /arlo.vcf
+Disallow: /arlo/
