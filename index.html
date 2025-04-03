@@ -171,7 +171,7 @@
       <a href="https://bitsnbacon.co.uk">Bits 'n' Bacon</a>
       <a href="https://bytesnbacon.co.uk">Bytes 'n' Bacon</a>
     </div>
-    <img src="/logo/logo-light.png" id="siteLogo" alt="Tarf logo" style="height: 60px; margin-bottom: 0.5rem;">
+    <img src="/logo/logo-transparent.png" id="siteLogo" alt="Tarf logo" style="height: 60px; margin-bottom: 0.5rem;">
     <h1>Welcome to tarf.co.uk</h1>
   </header>
   <main class="content-wrapper">
@@ -233,14 +233,6 @@
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', newTheme);
     }
-  
-  const logo = document.getElementById('siteLogo');
-  function updateLogo() {
-    const theme = document.documentElement.getAttribute('data-theme');
-    logo.src = theme === 'dark' ? '/logo/logo-dark.png' : '/logo/logo-light.png';
-  }
-  updateLogo();
-  document.querySelector('.theme-toggle').addEventListener('click', updateLogo);    
   </script>
 </body>
 </html>
