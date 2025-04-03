@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Bacon;Rowan;;;
+FN:Rowan Bacon
+TEL;TYPE=HOME,CELL:+447700111222
+EMAIL;TYPE=HOME,INTERNET:rowandbacon@gmail.com
+EMAIL;TYPE=HOME,INTERNET:rowanbacon@outlook.com
+EMAIL;TYPE=HOME,INTERNET:rowan@bacon.me.uk
+ADR;TYPE=HOME:;;1 Lanchester Garden, Brockhall Village, Old Langho, Blackburn, BB6 8DE;;;;United Kingdom
+URL:https://www.thebaconfamily.co.uk
+NOTE:Generated on 03 April 2025 at 08:52 UTC
+REV:20250403T085255Z
+GEO:53.826976;-2.453636
+UID:rowandbacon-20250403T0852@gmail.com
+END:VCARD
