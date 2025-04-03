@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Bacon;Arlo;;;
+FN:Arlo Bacon
+TEL;TYPE=HOME,CELL:+447769101158
+EMAIL;TYPE=HOME,INTERNET:arlobacon@gmail.com
+EMAIL;TYPE=HOME,INTERNET:arlombacon@outlook.com
+EMAIL;TYPE=HOME,INTERNET:arlo@bacon.me.uk
+ADR;TYPE=HOME:;;1 Lanchester Garden, Brockhall Village, Old Langho, Blackburn, BB6 8DE;;;;United Kingdom
+NOTE:Generated on 03 April 2025 at 08:52 UTC
+REV:20250403T085255Z
+GEO:53.826976;-2.453636
+UID:arlobacon-20250403T0852@gmail.com
+END:VCARD
