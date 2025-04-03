@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Bacon;Ali;;;
+FN:Ali Bacon
+TEL;TYPE=HOME,CELL:+447595941285
+EMAIL;TYPE=HOME,INTERNET:ali@bacon.me.uk
+EMAIL;TYPE=HOME,INTERNET:streakyb@gmail.com
+EMAIL;TYPE=HOME,INTERNET:abacon@neutralino.co.uk
+ADR;TYPE=HOME:;;1 Lanchester Garden, Brockhall Village, Old Langho, Blackburn, BB6 8DE;;;;United Kingdom
+URL:https://www.thebaconfamily.co.uk
+X-SOCIALPROFILE;type=instagram:https://instagram.com/alibacon3
+NOTE:Generated on 03 April 2025 at 08:52 UTC
+REV:20250403T085254Z
+GEO:53.826976;-2.453636
+UID:ali-20250403T0852@bacon.me.uk
+END:VCARD
