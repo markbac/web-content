@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download Rowan's Contact Card</title>
+  <script>
+    // Auto-trigger the download on page load
+    window.onload = () => {
+      const a = document.createElement('a');
+      a.href = '/rowan.vcf';
+      a.download = 'Rowan.vcf'; // Force download name
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    };
+  </script>
+</head>
+<body>
+  <p>If the download doesn't start, <a href="/rowan.vcf" download>click here to download Rowan’s contact card</a>.</p>
+</body>
+</html>
